@@ -51,11 +51,12 @@ app.use(cors({
 }));
 app.use(bodyParser.json({ limit: '10mb' }));
 app.use(bodyParser.urlencoded({ extended: true, limit: '10mb' }));
-// Serve static files
-app.use(express.static(path.join(__dirname)));
-app.use('/css', express.static(path.join(__dirname, 'css')));
-app.use('/js', express.static(path.join(__dirname, 'js')));
-app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+// Serve static files from the new directory structure
+app.use(express.static(path.join(__dirname, '../frontend')));
+app.use('/css', express.static(path.join(__dirname, '../frontend/css')));
+app.use('/js', express.static(path.join(__dirname, '../frontend/js')));
+app.use('/uploads', express.static(path.join(__dirname, '../../uploads')));
+app.use('/logs', express.static(path.join(__dirname, '../../logs')));
 
 // Database connection with improved error handling
 const pool = new Pool({
@@ -147,7 +148,7 @@ const validateLogin = [
 
 // Root route
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'index.html'));
+  res.sendFile(path.join(__dirname, '../frontend/index.html'));
 });
 
 // Health check endpoint

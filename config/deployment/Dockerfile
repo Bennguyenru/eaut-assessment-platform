@@ -9,13 +9,13 @@ RUN addgroup -g 1001 -S nodejs
 RUN adduser -S eautapp -u 1001
 
 # Copy package files
-COPY package*.json ./
+COPY src/backend/package*.json ./
 
 # Install dependencies
 RUN npm ci --only=production && npm cache clean --force
 
 # Copy application files
-COPY . .
+COPY src/backend/ ./
 
 # Create necessary directories
 RUN mkdir -p logs uploads public

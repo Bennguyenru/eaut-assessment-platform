@@ -18,9 +18,12 @@ if ! command -v npx nodemon &> /dev/null; then
 fi
 
 # Check if .env file exists
-if [ ! -f ".env" ]; then
-    echo -e "${YELLOW}Warning: .env file not found. Using default settings.${NC}"
+if [ ! -f "config/environment/.env" ]; then
+    echo -e "${YELLOW}Warning: config/environment/.env file not found. Using default settings.${NC}"
 fi
+
+# Change to backend directory
+cd src/backend
 
 # Start the application with nodemon for auto-reloading
 echo -e "${GREEN}Starting server with auto-reload...${NC}"

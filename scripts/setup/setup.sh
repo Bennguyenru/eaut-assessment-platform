@@ -66,11 +66,13 @@ check_postgresql() {
 # Install npm dependencies
 install_dependencies() {
     print_status "Installing Node.js dependencies..."
-    if [ -f "package.json" ]; then
+    if [ -f "src/backend/package.json" ]; then
+        cd src/backend
         npm install
+        cd ../../
         print_success "Dependencies installed successfully"
     else
-        print_error "package.json not found!"
+        print_error "src/backend/package.json not found!"
         exit 1
     fi
 }
@@ -79,13 +81,16 @@ install_dependencies() {
 setup_environment() {
     print_status "Setting up environment configuration..."
     
-    if [ ! -f ".env" ]; then
-        if [ -f ".env.example" ]; then
-            cp .env.example .env
+    if [ ! -f "config/environment/.env" ]; then
+        if [ -f "config/environment/.env.example" ]; then
+            cp config/environment/.env.example config/environment/.env
             print_success "Environment file created from template"
         else
+            # Create necessary directories
+            mkdir -p config/environment
+            
             # Create basic .env file
-            cat > .env << EOF
+            cat > config/environment/.env << EOF
 # Environment Variables for EAUT Assessment Platform
 PORT=3000
 NODE_ENV=development
@@ -130,23 +135,23 @@ setup_database() {
     createdb -U postgres eaut_assessment
     
     # Import schema
-    if [ -f "schema.sql" ]; then
+    if [ -f "src/database/schema.sql" ]; then
         print_status "Importing database schema..."
-        psql -U postgres -d eaut_assessment -f schema.sql
+        psql -U postgres -d eaut_assessment -f src/database/schema.sql
         print_success "Database schema imported"
     else
-        print_error "schema.sql not found!"
+        print_error "src/database/schema.sql not found!"
         exit 1
     fi
     
     # Import sample data from init_db.sh
-    if [ -f "init_db.sh" ]; then
+    if [ -f "src/database/init_db.sh" ]; then
         print_status "Importing sample data..."
-        chmod +x init_db.sh
-        ./init_db.sh
+        chmod +x src/database/init_db.sh
+        ./src/database/init_db.sh
         print_success "Sample data imported"
     else
-        print_warning "init_db.sh not found, skipping sample data import"
+        print_warning "src/database/init_db.sh not found, skipping sample data import"
     fi
 }
 
@@ -203,8 +208,9 @@ main() {
     echo "=================================================="
     echo ""
     print_status "To start the application:"
-    echo "  npm start              # Production mode"
-    echo "  npm run dev            # Development mode"
+    echo "  cd src/backend && npm start              # Production mode"
+    echo "  cd src/backend && npm run dev            # Development mode"
+    echo "  npm run quick-start                      # Quick start script"
     echo ""
     print_status "Default login credentials:"
     echo "  Username: admin"

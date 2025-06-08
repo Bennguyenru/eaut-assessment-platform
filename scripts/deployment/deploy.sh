@@ -4,9 +4,10 @@
 
 # Set variables
 APP_DIR="/home/ubuntu/workspace/eaut_assessment_platform"
-BACKEND_DIR="$APP_DIR/backend"
-FRONTEND_DIR="$APP_DIR/frontend"
-DB_DIR="$APP_DIR/database"
+BACKEND_DIR="$APP_DIR/src/backend"
+FRONTEND_DIR="$APP_DIR/src/frontend"
+DATABASE_DIR="$APP_DIR/src/database"
+CONFIG_DIR="$APP_DIR/config"
 LOG_DIR="$APP_DIR/logs"
 
 # Create log directory if it doesn't exist
@@ -19,7 +20,7 @@ npm init -y
 npm install express body-parser cors pg bcryptjs jsonwebtoken dotenv
 
 # Make database initialization script executable
-chmod +x $DB_DIR/init_db.sh
+chmod +x $DATABASE_DIR/init_db.sh
 
 # Create .env file for backend
 cat > $BACKEND_DIR/.env << EOF
@@ -40,8 +41,8 @@ cat > $APP_DIR/start.sh << EOF
 
 # Set variables
 APP_DIR="/home/ubuntu/workspace/eaut_assessment_platform"
-BACKEND_DIR="\$APP_DIR/backend"
-FRONTEND_DIR="\$APP_DIR/frontend"
+BACKEND_DIR="\$APP_DIR/src/backend"
+FRONTEND_DIR="\$APP_DIR/src/frontend"
 LOG_DIR="\$APP_DIR/logs"
 
 # Start backend server
