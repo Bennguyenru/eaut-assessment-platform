@@ -1,0 +1,82 @@
+services:
+  # PostgreSQL Database
+  postgres:
+    image: postgres:15-alpine
+    container_name: eaut_postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: eaut_assessment
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./schema.sql:/docker-entrypoint-initdb.d/01-schema.sql
+      - ./init_db.sh:/docker-entrypoint-initdb.d/02-init_db.sh
+    ports:
+      - "5432:5432"
+    networks:
+      - eaut_network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # EAUT Assessment Application
+  eaut_app:
+    build: .
+    container_name: eaut_assessment
+    restart: unless-stopped
+    environment:
+      NODE_ENV: production
+      PORT: 3000
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_NAME: eaut_assessment
+      DB_USER: postgres
+      DB_PASSWORD: postgres
+      JWT_SECRET: eaut-assessment-platform-secret-key-docker
+      JWT_EXPIRES_IN: 24h
+      CORS_ORIGIN: "*"
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./logs:/app/logs
+      - ./uploads:/app/uploads
+    networks:
+      - eaut_network
+    depends_on:
+      postgres:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "node", "-e", "require('http').get('http://localhost:3000/api/health', (res) => { process.exit(res.statusCode === 200 ? 0 : 1); }).on('error', () => { process.exit(1); });"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  # Nginx Reverse Proxy (Optional)
+  nginx:
+    image: nginx:alpine
+    container_name: eaut_nginx
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./ssl:/etc/nginx/ssl:ro
+    networks:
+      - eaut_network
+    depends_on:
+      - eaut_app
+    profiles:
+      - production
+
+volumes:
+  postgres_data:
+    driver: local
+
+networks:
+  eaut_network:
+    driver: bridge

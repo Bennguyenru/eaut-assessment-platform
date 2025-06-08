@@ -1,0 +1,67 @@
+EVALLOS: A technical platform supporting the assessment of the level of achievement of course learning outcomes, contributing to academic program quality assurance.
+Duc Dat Pham, Mai Thanh Nguyen Quynh, Huy Le Pham, Thien Doanh Le, 
+Tan Duy Le*, Kha Tu Huynh*
+
+International University, Ho Chi Minh City, Vietnam
+ Vietnam National University, Ho Chi Minh City, 700000, Vietnam
+
+Email:ITITIU20184@student.hcmiu.edu.vn, ITITIU20309@student.hcmiu.edu.vn, ITITIU20216@student.hcmiu.edu.vn, ITCSIU22237@student.hcmiu.edu.vn , ldtan@hcmiu.edu.vn, hktu@hcmiu.edu.vn
+
+Abstract. The assessment of the level of achievement of course learning outcomes is the most crucial step for improving the quality of the course, contributing to the assessment of the level of achievement of the learning outcomes of an academic program. This is one of the extremely important and urgent requirements for higher education institutions in the current trend of educational quality assurance and is also a mandatory requirement for quality assessment/accreditation standards. The paper proposes an online platform to facilitate the evaluation of Course Learning Outcomes (CLOs) based on student assessments and their alignment with Student Learning Outcomes (SLOs). The platform allows stakeholders, including evaluators, quality staffs and leaders, to track and analyze Course Learning Outcomes’ achievement levels. Key users include department chairs and instructors/lecturers seeking to monitor Course Learning Outcomes metrics and ensure continuous improvement of educational quality. The proposed platform is intended to support various quality assurance functions. Analytics will summarize Course Learning Outcomes performance at the course, program, and institutional levels over time. Reports aiding accreditation preparation will also be generated. Through optimizing Course Learning Outcomes assessment workflows, it is expected the platform will enhance the objectivity and transparency of evaluating teaching and learning effectiveness. Insights gained are intended to guide curriculum refinements, reinforcing attainment of graduate attributes stated in Student Learning Outcomes statements. Ultimately, this platform aims to develop a useful educational technology solution that facilitates outcomes-based education.
+
+Keywords: Course Learning Outcomes; Student Learning Outcomes; Learning Evaluation; Learning Measurement; Quality Assurance; Quality Assessment. 
+1   Introduction
+Measuring the level of achievement of program learning outcomes from learners' learning results is a way to help educational institutions improve the quality of academic programs through adjusting course, teaching and assessment methodology and teaching-learning activities, etc. The evaluation of learning outcomes has been applied by foreign universities for a long time, but for Vietnamese education, this has recently become important, and has been officially included in documents and regulations in operation and training management at higher education institute. According to Circular 17/2021/TT-BGDĐT, universities are required to outline Student Learning Outcomes to demonstrate that graduates have sufficient knowledge and skills for work. In addition to meeting domestic standards, these SLOs help schools achieve international recognition from accreditors like the ASEAN University Network - Quality Assurance (AUN-QA)  and Accreditation Board for Engineering and Technology (ABET), contributing to affirming training quality and attracting more students.
+This platform aims to evaluate Course Learning Outcome achievement based on student academic performance. Analyzing CLO attainment can identify areas for enhancement and provide updates to CLOs, ultimately serving SLOs. This ensures curriculum quality and relevance by revealing learner insights and aligning courses with objectives. Evaluating CLOs enables institutions to make evidence-based decisions regarding curriculum, teaching, and assessment.
+In response, EVALLOS - an integrated system automating data analysis and generating actionable insights, primarily drawing on student exam scores. SLO assessment will also be considered as part of the analysis. This entails evaluating SLO fulfillment across multiple courses through CLO assessment using exam results. By aggregating course-level data, SLO assessment offers a holistic view of students' mastery of program goals, informing curriculum alignment decisions.
+ 
+Fig. 1. Learning Outcomes Evaluation Process
+2   Literature Review   
+To be able to implement quality improvement based on the level of achievement of learning outcomes, and to meet the regulations of Circular 17 17/2021/TT-BGDĐT, many educational institutions have deployed tools to support this, from measuring the level of achievement of the CLOs, from which to measure the level of achievement of the SLOs the academic program. Each educational institution builds its own support tools, and each support system has limited internal use or is only suitable for its own characteristics.
+
+This literature review examines recent research on CLO evaluation systems / Score analysis systems and their implications for informing curriculum development. The summary of three typical learning management system features is presented in Table 1.
+Table . Summary of the three learning management system features
+
+3   Proposed technical platform
+Stakeholder Descriptions The relationship between the findings and recommendations from the analysis and the stakeholders is a symbiotic one, as the analysis provides valuable insights that empower stakeholders to make data-driven decisions and take appropriate actions to evaluate CLOs. The Use case diagram of EVALLOS is shown in Fig. 2.
+ 
+Fig. 2. Diagram describes main stakeholders and their basic functions within a system
+Required Inputs: The analysis requires data on the grade distribution, including the number of participants and the individual scores obtained by students. The grade distribution data allows for a comprehensive assessment of student’s performance across courses and provides a basis for evaluating the attainment of CLOs. Achievement Targets for SLOs and CLOs: Clear achievement targets must be defined for both Student Learning Outcomes and Course Learning Outcomes.
+
+Methodology for Calculating CLO Achievement
+Fig. 3. in our platform illustrates EVALLOS' process of analyzing student performance data from the question-CLO mapping matrix (Table 2) and rubric evaluations (Table 3). By computationally tracing assessment responses back to designated CLOs, EVALLOS determines the proportion of each CLO achieved across exam groups. This facilitates precise and longitudinal reporting on learning outcome completion, supporting evaluation and refinement efforts.
+
+Fig. 3. Process to calculate the CLOs result in EVALLOS
+(The exam types such as midterm, final, group presentation (which is the type of exam used to evaluate the CLOs) are included).
+
+
+
+
+
+
+
+
+4   Implementation and Evaluation
+Implementation: The EVALLOS platform facilitates the management of exam groups, which allows instructors to organize assessments by type (e.g., midterm, final, group presentation). Assigned lecturers are able utilize the system's features to score and modify exam structure (Fig. 4.). 
+
+
+Fig. 4. A view to manage a list of exam groups
+For instance, a question-CLO matrix can be established (Fig. 5), along with associated rubrics. Score tracking is supported through an exam group score table that enables lecturers to update student results (Fig. 6).
+
+Fig. 5. A sample of matrix of Question – CLOs
+Score tracking is supported through an exam group score table that enables lecturers to update student results (Fig. 6.).
+
+
+Fig. 6. A sample score table of the exam groups
+Evaluation: Leveraging the relationship between exam questions and CLOs specified in Section 3, as well as individual student performance data captured within exam groups, the platform generates CLO assessment reports (Fig. 7.). According to the report, instructors can determine the number of students who successfully demonstrated mastery on each defined learning outcome, as represented by those who passed. The proportion of students across an exam group accomplishing specific CLOs is also conveyed. Such output facilitates evaluation of assessment quality and learner subject comprehension. By appraising pass rates at the CLO level, educators can gauge the efficacy of instructional methods in helping students achieve intended objectives. Insights into outcome-focused understanding further continuous enhancement endeavors. 
+
+Fig. 7. A sample of CLOs result
+5   Conclusion
+This research aims to develop EVALLOS, an online platform aimed to facilitate the evaluation of Course Learning Outcomes (CLOs) and their alignment with Student Learning Outcomes (SLOs). Based on the assessment of CLO achievement, the analysis will generate conclusions regarding the extent to which course objectives have been met. Additionally, it will provide recommendations for improvement, suggesting specific actions that can enhance the curriculum’s effectiveness and align it more closely with the desired SLOs. The conclusions drawn from the analysis will help educational institutions under- stand the strengths and weaknesses of their curriculum and teaching practices.
+
+Future efforts will focus on implementing customizable templating. This allows administrators to easily configure the platform based on their unique CLO/SLO frameworks, assessment processes, and reporting requirements. Tailoring the user experience in this way removes friction for adoption across diverse customer segments.
+Additional development resources should be dedicated to integrating EVALLOS within individual campus systems already in use. Developing pre-built connectors to major LMS, student information databases, and other EdTech solutions streamlines the setup process. Automated data synchronization further lightens the maintenance workload. 
+The improvement recommendations will provide actionable insights for curriculum revision, instructional design, assessment strategies, and faculty development, fostering continuous improvement in the educational process.
+
+References
+

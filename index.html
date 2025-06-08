@@ -1,0 +1,2160 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EAUT Assessment Platform - Nền tảng Đánh giá Chuẩn đầu ra</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="app">
+        <!-- Login Page -->
+        <div id="login-page" class="container-fluid vh-100 d-flex align-items-center justify-content-center bg-light">
+            <div class="card shadow-lg" style="width: 400px;">
+                <div class="card-body p-5">
+                    <div class="text-center mb-4">
+                        <img src="https://eaut.edu.vn/wp-content/uploads/2022/05/logo-1.png" alt="EAUT Logo" height="80">
+                        <h2 class="mt-3 mb-0">EAUT Assessment</h2>
+                        <p class="text-muted">Nền tảng Đánh giá Chuẩn đầu ra</p>
+                    </div>
+                    <form id="login-form">
+                        <div class="mb-3">
+                            <label for="username" class="form-label">Tên đăng nhập</label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="bi bi-person"></i></span>
+                                <input type="text" class="form-control" id="username" placeholder="Nhập tên đăng nhập">
+                            </div>
+                        </div>
+                        <div class="mb-4">
+                            <label for="password" class="form-label">Mật khẩu</label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="bi bi-lock"></i></span>
+                                <input type="password" class="form-control" id="password" placeholder="Nhập mật khẩu">
+                            </div>
+                        </div>
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-primary btn-lg">Đăng nhập</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Application -->
+        <div id="main-app" class="d-none">
+            <!-- Header -->
+            <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="#">
+                        <img src="https://eaut.edu.vn/wp-content/uploads/2022/05/logo-1.png" alt="EAUT Logo" height="40">
+                        EAUT Assessment
+                    </a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav me-auto">
+                            <li class="nav-item">
+                                <a class="nav-link active" href="#dashboard"><i class="bi bi-speedometer2"></i> Trang chủ</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#introduction"><i class="bi bi-info-circle"></i> Giới thiệu Hệ thống</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                                    <i class="bi bi-mortarboard"></i> Quản lý Chuẩn đầu ra
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="#plo-management">Quản lý PLO</a></li>
+                                    <li><a class="dropdown-item" href="#clo-management">Quản lý CLO</a></li>
+                                    <li><a class="dropdown-item" href="#clo-plo-matrix">Ma trận CLO-PLO</a></li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                                    <i class="bi bi-clipboard-check"></i> Quản lý Đánh giá
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="#assessment-groups">Nhóm đánh giá</a></li>
+                                    <li><a class="dropdown-item" href="#questions">Câu hỏi/Tiêu chí</a></li>
+                                    <li><a class="dropdown-item" href="#rubrics">Rubric</a></li>
+                                    <li><a class="dropdown-item" href="#scores">Nhập điểm</a></li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                                    <i class="bi bi-bar-chart"></i> Báo cáo
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="#clo-reports">Báo cáo CLO</a></li>
+                                    <li><a class="dropdown-item" href="#plo-reports">Báo cáo PLO</a></li>
+                                    <li><a class="dropdown-item" href="#trend-reports">Báo cáo Xu hướng</a></li>
+                                    <li><a class="dropdown-item" href="#comparison-reports">Báo cáo So sánh</a></li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                                    <i class="bi bi-gear"></i> Cấu hình
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="#user-management">Quản lý Người dùng</a></li>
+                                    <li><a class="dropdown-item" href="#department-management">Quản lý Khoa/Bộ môn</a></li>
+                                    <li><a class="dropdown-item" href="#system-settings">Cài đặt Hệ thống</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                        <div class="d-flex">
+                            <div class="dropdown">
+                                <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown">
+                                    <i class="bi bi-person-circle"></i> <span id="user-fullname">Người dùng</span>
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-end">
+                                    <li><a class="dropdown-item" href="#profile"><i class="bi bi-person"></i> Hồ sơ</a></li>
+                                    <li><a class="dropdown-item" href="#change-password"><i class="bi bi-key"></i> Đổi mật khẩu</a></li>
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li><a class="dropdown-item" href="#" id="logout-btn"><i class="bi bi-box-arrow-right"></i> Đăng xuất</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+
+            <!-- Content Area -->
+            <div class="container-fluid py-4">
+                <!-- Dashboard -->
+                <div id="dashboard-page" class="page-content">
+                    <div class="row mb-4">
+                        <div class="col">
+                            <h2><i class="bi bi-speedometer2"></i> Trang chủ</h2>
+                            <nav aria-label="breadcrumb">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item active">Trang chủ</li>
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+
+                    <div class="row mb-4">
+                        <div class="col-md-3">
+                            <div class="card bg-primary text-white mb-4">
+                                <div class="card-body">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div>
+                                            <h5 class="card-title">Chương trình đào tạo</h5>
+                                            <h2 id="program-count">0</h2>
+                                        </div>
+                                        <i class="bi bi-mortarboard fs-1"></i>
+                                    </div>
+                                </div>
+                                <div class="card-footer d-flex align-items-center justify-content-between">
+                                    <a class="small text-white stretched-link" href="#programs">Xem chi tiết</a>
+                                    <div class="small text-white"><i class="bi bi-chevron-right"></i></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="card bg-success text-white mb-4">
+                                <div class="card-body">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div>
+                                            <h5 class="card-title">Học phần</h5>
+                                            <h2 id="course-count">0</h2>
+                                        </div>
+                                        <i class="bi bi-book fs-1"></i>
+                                    </div>
+                                </div>
+                                <div class="card-footer d-flex align-items-center justify-content-between">
+                                    <a class="small text-white stretched-link" href="#courses">Xem chi tiết</a>
+                                    <div class="small text-white"><i class="bi bi-chevron-right"></i></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="card bg-warning text-white mb-4">
+                                <div class="card-body">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div>
+                                            <h5 class="card-title">Lớp học</h5>
+                                            <h2 id="class-count">0</h2>
+                                        </div>
+                                        <i class="bi bi-people fs-1"></i>
+                                    </div>
+                                </div>
+                                <div class="card-footer d-flex align-items-center justify-content-between">
+                                    <a class="small text-white stretched-link" href="#classes">Xem chi tiết</a>
+                                    <div class="small text-white"><i class="bi bi-chevron-right"></i></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="card bg-danger text-white mb-4">
+                                <div class="card-body">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div>
+                                            <h5 class="card-title">Sinh viên</h5>
+                                            <h2 id="student-count">0</h2>
+                                        </div>
+                                        <i class="bi bi-person-badge fs-1"></i>
+                                    </div>
+                                </div>
+                                <div class="card-footer d-flex align-items-center justify-content-between">
+                                    <a class="small text-white stretched-link" href="#students">Xem chi tiết</a>
+                                    <div class="small text-white"><i class="bi bi-chevron-right"></i></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="card mb-4">
+                                <div class="card-header">
+                                    <i class="bi bi-bar-chart-line"></i>
+                                    Tỷ lệ đạt PLO - Khoa Cơ khí
+                                </div>
+                                <div class="card-body">
+                                    <canvas id="plo-chart" width="100%" height="40"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card mb-4">
+                                <div class="card-header">
+                                    <i class="bi bi-bar-chart-steps"></i>
+                                    Tỷ lệ đạt CLO - Học phần ME301
+                                </div>
+                                <div class="card-body">
+                                    <canvas id="clo-chart" width="100%" height="40"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card mb-4">
+                                <div class="card-header">
+                                    <i class="bi bi-table"></i>
+                                    Báo cáo CLO mới nhất
+                                </div>
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered table-hover">
+                                            <thead>
+                                                <tr>
+                                                    <th>Mã học phần</th>
+                                                    <th>Tên học phần</th>
+                                                    <th>Lớp</th>
+                                                    <th>Học kỳ</th>
+                                                    <th>Ngày báo cáo</th>
+                                                    <th>Tỷ lệ đạt trung bình</th>
+                                                    <th>Thao tác</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="recent-clo-reports">
+                                                <tr>
+                                                    <td>ME101</td>
+                                                    <td>Nhập môn Kỹ thuật Cơ khí</td>
+                                                    <td>ME101-01</td>
+                                                    <td>2025-1</td>
+                                                    <td>30/05/2025</td>
+                                                    <td>83%</td>
+                                                    <td><a href="#clo-reports" class="btn btn-sm btn-primary">Xem</a></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>ME201</td>
+                                                    <td>Cơ học Vật rắn</td>
+                                                    <td>ME201-01</td>
+                                                    <td>2025-1</td>
+                                                    <td>29/05/2025</td>
+                                                    <td>78%</td>
+                                                    <td><a href="#clo-reports" class="btn btn-sm btn-primary">Xem</a></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>ME301</td>
+                                                    <td>Thiết kế Máy</td>
+                                                    <td>ME301-01</td>
+                                                    <td>2025-1</td>
+                                                    <td>28/05/2025</td>
+                                                    <td>85%</td>
+                                                    <td><a href="#clo-reports" class="btn btn-sm btn-primary">Xem</a></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Introduction Page -->
+                <div id="introduction-page" class="page-content d-none">
+                    <div class="row mb-4">
+                        <div class="col">
+                            <h2><i class="bi bi-info-circle"></i> Giới thiệu Hệ thống Đánh giá Chuẩn đầu ra</h2>
+                            <nav aria-label="breadcrumb">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="#dashboard">Trang chủ</a></li>
+                                    <li class="breadcrumb-item active">Giới thiệu Hệ thống</li>
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+
+                    <!-- Overview Section -->
+                    <div class="row mb-4">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header bg-primary text-white">
+                                    <h5 class="mb-0"><i class="bi bi-building"></i> Tổng quan về Nền tảng EAUT Assessment</h5>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-8">
+                                            <p class="lead">Nền tảng Đánh giá Chất lượng Giáo dục Đại học Khoa Cơ khí - Trường Đại học Công nghệ Đông Á (EAUT)</p>
+                                            <p>Hệ thống được thiết kế để hỗ trợ việc đánh giá, theo dõi và cải tiến chất lượng giáo dục theo các tiêu chuẩn quốc tế và quốc gia, đặc biệt tập trung vào:</p>
+                                            <ul class="list-unstyled">
+                                                <li><i class="bi bi-check-circle text-success me-2"></i><strong>Chuẩn đầu ra chương trình (PLO)</strong> - Program Learning Outcomes</li>
+                                                <li><i class="bi bi-check-circle text-success me-2"></i><strong>Chuẩn đầu ra học phần (CLO)</strong> - Course Learning Outcomes</li>
+                                                <li><i class="bi bi-check-circle text-success me-2"></i><strong>Ma trận đánh giá</strong> - Mapping Matrix giữa CLO và PLO</li>
+                                                <li><i class="bi bi-check-circle text-success me-2"></i><strong>Báo cáo và phân tích</strong> - Comprehensive Reporting System</li>
+                                            </ul>
+                                            <div class="mt-3">
+                                                <h6 class="text-primary"><i class="bi bi-flag"></i> Tôn chỉ nhà trường:</h6>
+                                                <blockquote class="blockquote fst-italic">
+                                                    <p class="small">"Thực học, Thực danh, Thực hành, Thực nghiệp"</p>
+                                                </blockquote>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="text-center">
+                                                <img src="https://eaut.edu.vn/wp-content/uploads/2022/05/logo-1.png" alt="EAUT Logo" class="img-fluid mb-3" style="max-height: 120px;">
+                                                <h6 class="text-muted">Trường Đại học Công nghệ Đông Á</h6>
+                                                <p class="small text-muted">East Asia University of Technology</p>
+                                                <div class="mt-3">
+                                                    <p class="small"><i class="bi bi-geo-alt text-primary"></i> <strong>Hà Nội:</strong> Trịnh Văn Bô, Nam Từ Liêm</p>
+                                                    <p class="small"><i class="bi bi-geo-alt text-primary"></i> <strong>Bắc Ninh:</strong> Làng Đại học, Phường Võ Cường</p>
+                                                    <p class="small"><i class="bi bi-telephone text-primary"></i> 0243.555.2008 / 024.2236.5888</p>
+                                                    <p class="small"><i class="bi bi-envelope text-primary"></i> tuyensinh@eaut.edu.vn</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- EAUT Academic Programs -->
+                    <div class="row mb-4">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5 class="mb-0"><i class="bi bi-mortarboard-fill"></i> Các Ngành Đào tạo tại EAUT</h5>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <h6 class="text-primary"><i class="bi bi-gear-wide-connected"></i> Khối Kỹ thuật & Công nghệ</h6>
+                                            <ul class="small">
+                                                <li>Công nghệ Thông tin</li>
+                                                <li>Công nghệ Kỹ thuật Ô tô</li>
+                                                <li>Công nghệ Kỹ thuật Điện - Điện tử</li>
+                                                <li>Công nghệ Kỹ thuật Điều khiển - Tự động hóa</li>
+                                                <li>Cơ Điện tử</li>
+                                                <li>Công nghệ Chế tạo Máy</li>
+                                                <li>Kỹ thuật Xây dựng</li>
+                                                <li>Công nghệ Kỹ thuật Nhiệt - Điện lạnh</li>
+                                                <li>Điện lạnh và Điều hòa không khí</li>
+                                                <li>Công nghệ Bán dẫn</li>
+                                                <li>Trí tuệ Nhân tạo Ứng dụng</li>
+                                                <li>Công nghệ Thực phẩm</li>
+                                            </ul>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <h6 class="text-success"><i class="bi bi-briefcase"></i> Khối Kinh tế & Quản trị</h6>
+                                            <ul class="small">
+                                                <li>Quản trị Kinh doanh</li>
+                                                <li>Marketing</li>
+                                                <li>Quản trị Nhân lực</li>
+                                                <li>Tài chính Ngân hàng</li>
+                                                <li>Kế toán</li>
+                                                <li>Kế toán định hướng ACCA</li>
+                                                <li>Quản trị Du lịch và Lữ hành</li>
+                                                <li>Quản trị Khách sạn</li>
+                                            </ul>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <h6 class="text-warning"><i class="bi bi-translate"></i> Khối Ngôn ngữ & Y tế</h6>
+                                            <ul class="small mb-3">
+                                                <li>Ngôn ngữ Anh</li>
+                                                <li>Ngôn ngữ Nhật Bản</li>
+                                                <li>Ngôn ngữ Hàn Quốc</li>
+                                                <li>Ngôn ngữ Trung Quốc</li>
+                                                <li>Dược học</li>
+                                                <li>Điều dưỡng</li>
+                                                <li>Luật</li>
+                                                <li>Thiết kế Đồ họa Số</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="alert alert-info mt-3">
+                                        <i class="bi bi-info-circle"></i>
+                                        <strong>Đặc biệt:</strong> EAUT là một trong những trường đại học đầu tiên tại Việt Nam đào tạo ngành Công nghệ Bán dẫn và Trí tuệ Nhân tạo Ứng dụng, đáp ứng nhu cầu nhân lực chất lượng cao cho thời đại Công nghiệp 4.0.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Key Features -->
+                    <div class="row mb-4">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5 class="mb-0"><i class="bi bi-gear"></i> Tính năng chính của Hệ thống</h5>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-6 mb-3">
+                                            <div class="feature-item">
+                                                <h6><i class="bi bi-mortarboard text-primary me-2"></i>Quản lý Chuẩn đầu ra</h6>
+                                                <p class="small text-muted">Tạo, chỉnh sửa và quản lý PLO/CLO theo từng chương trình đào tạo và học phần</p>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <div class="feature-item">
+                                                <h6><i class="bi bi-clipboard-check text-success me-2"></i>Đánh giá và Chấm điểm</h6>
+                                                <p class="small text-muted">Hệ thống rubric đa dạng với các phương pháp đánh giá trực tiếp và gián tiếp</p>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <div class="feature-item">
+                                                <h6><i class="bi bi-diagram-3 text-warning me-2"></i>Ma trận CLO-PLO</h6>
+                                                <p class="small text-muted">Thiết lập mối quan hệ giữa chuẩn đầu ra học phần và chuẩn đầu ra chương trình</p>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <div class="feature-item">
+                                                <h6><i class="bi bi-bar-chart text-info me-2"></i>Báo cáo & Phân tích</h6>
+                                                <p class="small text-muted">Tạo báo cáo chi tiết với biểu đồ, xu hướng và so sánh theo thời gian</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Quality Standards -->
+                    <div class="row mb-4">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5 class="mb-0"><i class="bi bi-award"></i> Tiêu chuẩn Đầu ra và Yêu cầu Kiểm định Chất lượng</h5>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <h6 class="text-primary"><i class="bi bi-globe"></i> Tiêu chuẩn Kiểm định Quốc tế</h6>
+                                            <div class="mb-3">
+                                                <strong>ABET (Accreditation Board for Engineering and Technology)</strong>
+                                                <ul class="small mt-2">
+                                                    <li>Sinh viên (Students) - Đánh giá quá trình tuyển sinh và tiến bộ</li>
+                                                    <li>Mục tiêu giáo dục (Program Educational Objectives)</li>
+                                                    <li>Chuẩn đầu ra sinh viên (Student Outcomes)</li>
+                                                    <li>Cải tiến liên tục (Continuous Improvement)</li>
+                                                    <li>Chương trình học (Curriculum)</li>
+                                                    <li>Đội ngũ giảng viên (Faculty)</li>
+                                                    <li>Cơ sở vật chất (Facilities)</li>
+                                                </ul>
+                                            </div>
+                                            <div class="mb-3">
+                                                <strong>AUN-QA (ASEAN University Network)</strong>
+                                                <ul class="small mt-2">
+                                                    <li>Kết quả học tập dự kiến (Expected Learning Outcomes)</li>
+                                                    <li>Cấu trúc và nội dung chương trình</li>
+                                                    <li>Phương pháp giảng dạy và học tập</li>
+                                                    <li>Đánh giá sinh viên (Student Assessment)</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <h6 class="text-success"><i class="bi bi-flag"></i> Tiêu chuẩn Kiểm định Quốc gia</h6>
+                                            <div class="mb-3">
+                                                <strong>Thông tư 17/2021/TT-BGDĐT</strong>
+                                                <ul class="small mt-2">
+                                                    <li>Mục tiêu rõ ràng, cụ thể, cấu trúc hợp lý</li>
+                                                    <li>Đáp ứng yêu cầu về chuẩn kiến thức, kỹ năng</li>
+                                                    <li>Nội dung cập nhật, phù hợp yêu cầu phát triển</li>
+                                                    <li>Phương pháp đánh giá đa dạng</li>
+                                                </ul>
+                                            </div>
+                                            <div class="mb-3">
+                                                <strong>Thông tư 04/2025/TT-BGDĐT</strong>
+                                                <ul class="small mt-2">
+                                                    <li>Đánh giá mức độ đáp ứng mục tiêu và chuẩn đầu ra</li>
+                                                    <li>Đánh giá sự phù hợp với nhu cầu xã hội</li>
+                                                    <li>Đánh giá tính hiệu quả của phương pháp dạy và học</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Mechanical Engineering Specific Standards -->
+                    <div class="row mb-4">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5 class="mb-0"><i class="bi bi-gear-fill"></i> Chuẩn đầu ra đặc thù cho Khoa Cơ khí</h5>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <h6 class="text-primary"><i class="bi bi-book"></i> Kiến thức</h6>
+                                            <div class="bg-light p-3 rounded">
+                                                <strong>Kiến thức cơ bản:</strong>
+                                                <ul class="small mb-2">
+                                                    <li>Toán học, vật lý, hóa học ứng dụng</li>
+                                                </ul>
+                                                <strong>Kiến thức chuyên ngành:</strong>
+                                                <ul class="small mb-2">
+                                                    <li>Cơ học, vật liệu, thiết kế máy</li>
+                                                    <li>Chế tạo máy, tự động hóa</li>
+                                                </ul>
+                                                <strong>Kiến thức bổ trợ:</strong>
+                                                <ul class="small">
+                                                    <li>Quản lý sản xuất</li>
+                                                    <li>An toàn lao động, bảo vệ môi trường</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <h6 class="text-success"><i class="bi bi-tools"></i> Kỹ năng</h6>
+                                            <div class="bg-light p-3 rounded">
+                                                <strong>Kỹ năng cứng:</strong>
+                                                <ul class="small mb-2">
+                                                    <li>Thiết kế và phân tích hệ thống cơ khí</li>
+                                                    <li>Sử dụng phần mềm CAD/CAM/CAE</li>
+                                                    <li>Vận hành và bảo trì thiết bị</li>
+                                                </ul>
+                                                <strong>Kỹ năng mềm:</strong>
+                                                <ul class="small">
+                                                    <li>Làm việc nhóm và lãnh đạo</li>
+                                                    <li>Giao tiếp và thuyết trình</li>
+                                                    <li>Quản lý dự án và thời gian</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <h6 class="text-warning"><i class="bi bi-heart"></i> Thái độ</h6>
+                                            <div class="bg-light p-3 rounded">
+                                                <ul class="small">
+                                                    <li>Đạo đức nghề nghiệp và trách nhiệm xã hội</li>
+                                                    <li>Ý thức học tập suốt đời</li>
+                                                    <li>Tinh thần đổi mới và sáng tạo</li>
+                                                    <li>Ý thức kỷ luật và tác phong công nghiệp</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Assessment Methods -->
+                    <div class="row mb-4">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5 class="mb-0"><i class="bi bi-clipboard-data"></i> Phương pháp Đánh giá Chuẩn đầu ra</h5>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <h6 class="text-primary"><i class="bi bi-check-square"></i> Đánh giá trực tiếp</h6>
+                                            <div class="table-responsive">
+                                                <table class="table table-sm table-bordered">
+                                                    <thead class="table-light">
+                                                        <tr>
+                                                            <th>Phương pháp</th>
+                                                            <th>Mô tả</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td><strong>Bài thi</strong></td>
+                                                            <td>Giữa kỳ, cuối kỳ, kiểm tra thường xuyên</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><strong>Bài tập lớn</strong></td>
+                                                            <td>Thiết kế, tính toán, mô phỏng</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><strong>Thực hành</strong></td>
+                                                            <td>Thí nghiệm, thực tập xưởng</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><strong>Đồ án</strong></td>
+                                                            <td>Đồ án môn học, đồ án tốt nghiệp</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <h6 class="text-success"><i class="bi bi-chat-square-dots"></i> Đánh giá gián tiếp</h6>
+                                            <div class="table-responsive">
+                                                <table class="table table-sm table-bordered">
+                                                    <thead class="table-light">
+                                                        <tr>
+                                                            <th>Phương pháp</th>
+                                                            <th>Đối tượng</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td><strong>Khảo sát</strong></td>
+                                                            <td>Sinh viên, cựu sinh viên, nhà tuyển dụng</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><strong>Phản hồi</strong></td>
+                                                            <td>Giảng viên, doanh nghiệp, chuyên gia</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><strong>Thống kê</strong></td>
+                                                            <td>Tỷ lệ tốt nghiệp, tỷ lệ có việc làm</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><strong>Dữ liệu</strong></td>
+                                                            <td>Mức lương, sự hài lòng của nhà tuyển dụng</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Assessment Matrix -->
+                    <div class="row mb-4">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5 class="mb-0"><i class="bi bi-diagram-3"></i> Ma trận Đánh giá</h5>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-4 text-center">
+                                            <div class="border rounded p-3 mb-3">
+                                                <h6 class="text-primary">Ma trận CLO-PLO</h6>
+                                                <p class="small">Thể hiện mối quan hệ giữa chuẩn đầu ra học phần và chuẩn đầu ra chương trình</p>
+                                                <i class="bi bi-arrow-left-right text-primary fs-3"></i>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 text-center">
+                                            <div class="border rounded p-3 mb-3">
+                                                <h6 class="text-success">Ma trận Câu hỏi-CLO</h6>
+                                                <p class="small">Thể hiện mối quan hệ giữa câu hỏi/tiêu chí đánh giá và chuẩn đầu ra học phần</p>
+                                                <i class="bi bi-question-circle text-success fs-3"></i>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 text-center">
+                                            <div class="border rounded p-3 mb-3">
+                                                <h6 class="text-warning">Ma trận Học phần-PLO</h6>
+                                                <p class="small">Thể hiện mối quan hệ giữa các học phần và chuẩn đầu ra chương trình</p>
+                                                <i class="bi bi-bookmarks text-warning fs-3"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- System Benefits -->
+                    <div class="row mb-4">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5 class="mb-0"><i class="bi bi-trophy"></i> Lợi ích của Hệ thống</h5>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <h6 class="text-primary"><i class="bi bi-people"></i> Đối với Giảng viên</h6>
+                                            <ul class="list-unstyled">
+                                                <li><i class="bi bi-check-circle text-success me-2"></i>Theo dõi tiến độ học tập của sinh viên</li>
+                                                <li><i class="bi bi-check-circle text-success me-2"></i>Đánh giá hiệu quả phương pháp giảng dạy</li>
+                                                <li><i class="bi bi-check-circle text-success me-2"></i>Tạo báo cáo CLO tự động</li>
+                                                <li><i class="bi bi-check-circle text-success me-2"></i>Phát hiện điểm cần cải thiện</li>
+                                            </ul>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <h6 class="text-success"><i class="bi bi-building"></i> Đối với Nhà trường</h6>
+                                            <ul class="list-unstyled">
+                                                <li><i class="bi bi-check-circle text-success me-2"></i>Đảm bảo chất lượng đào tạo</li>
+                                                <li><i class="bi bi-check-circle text-success me-2"></i>Chuẩn bị cho kiểm định chất lượng</li>
+                                                <li><i class="bi bi-check-circle text-success me-2"></i>Cải tiến liên tục chương trình đào tạo</li>
+                                                <li><i class="bi bi-check-circle text-success me-2"></i>Tăng cường uy tín và thương hiệu</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- EAUT Graduate Outcomes -->
+                                    <div class="row mt-4">
+                                        <div class="col-12">
+                                            <h6 class="text-info"><i class="bi bi-award"></i> Chuẩn Sinh viên Tốt nghiệp EAUT</h6>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="bg-light p-3 rounded">
+                                                        <p class="small mb-2"><i class="bi bi-check text-success me-2"></i><strong>Thực học:</strong> Vững vàng kiến thức chuyên môn</p>
+                                                        <p class="small mb-2"><i class="bi bi-check text-success me-2"></i><strong>Thực danh:</strong> Tự tin phát huy năng lực, thể hiện bản thân</p>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="bg-light p-3 rounded">
+                                                        <p class="small mb-2"><i class="bi bi-check text-success me-2"></i><strong>Thực hành:</strong> Giàu thực tiễn, thực hành, thực tế</p>
+                                                        <p class="small mb-2"><i class="bi bi-check text-success me-2"></i><strong>Thực nghiệp:</strong> Gắn kết, đáp ứng tốt yêu cầu doanh nghiệp công nghiệp</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- University Recognition -->
+                                    <div class="alert alert-success mt-3">
+                                        <h6><i class="bi bi-star-fill"></i> Thành tích và Công nhận</h6>
+                                        <p class="small mb-0">EAUT được thành lập theo Quyết định số 1777/QĐ-TTg và là một trong những trường đại học có uy tín trong lĩnh vực đào tạo kỹ thuật và công nghệ tại khu vực Đông Á. Trường đã và đang hợp tác với nhiều doanh nghiệp hàng đầu để đảm bảo sinh viên có cơ hội thực tập và làm việc ngay sau khi tốt nghiệp.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Quick Start Guide -->
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5 class="mb-0"><i class="bi bi-play-circle"></i> Hướng dẫn Sử dụng nhanh</h5>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-3 text-center">
+                                            <div class="step-card p-3 mb-3">
+                                                <div class="step-number bg-primary text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 40px; height: 40px;">1</div>
+                                                <h6>Thiết lập PLO</h6>
+                                                <p class="small text-muted">Tạo các chuẩn đầu ra chương trình theo ABET và AUN-QA</p>
+                                                <a href="#plo-management" class="btn btn-sm btn-outline-primary">Bắt đầu</a>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 text-center">
+                                            <div class="step-card p-3 mb-3">
+                                                <div class="step-number bg-success text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 40px; height: 40px;">2</div>
+                                                <h6>Định nghĩa CLO</h6>
+                                                <p class="small text-muted">Tạo chuẩn đầu ra học phần và liên kết với PLO</p>
+                                                <a href="#clo-management" class="btn btn-sm btn-outline-success">Tiếp tục</a>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 text-center">
+                                            <div class="step-card p-3 mb-3">
+                                                <div class="step-number bg-warning text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 40px; height: 40px;">3</div>
+                                                <h6>Thiết lập Đánh giá</h6>
+                                                <p class="small text-muted">Tạo rubric và phương pháp đánh giá CLO</p>
+                                                <a href="#assessment-groups" class="btn btn-sm btn-outline-warning">Cấu hình</a>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 text-center">
+                                            <div class="step-card p-3 mb-3">
+                                                <div class="step-number bg-info text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 40px; height: 40px;">4</div>
+                                                <h6>Phân tích Báo cáo</h6>
+                                                <p class="small text-muted">Xem báo cáo CLO, PLO và xu hướng cải thiện</p>
+                                                <a href="#clo-reports" class="btn btn-sm btn-outline-info">Xem báo cáo</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PLO Management Page -->
+                <div id="plo-management-page" class="page-content d-none">
+                    <div class="row mb-4">
+                        <div class="col">
+                            <h2><i class="bi bi-mortarboard"></i> Quản lý PLO</h2>
+                            <nav aria-label="breadcrumb">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="#dashboard">Trang chủ</a></li>
+                                    <li class="breadcrumb-item">Quản lý Chuẩn đầu ra</li>
+                                    <li class="breadcrumb-item active">Quản lý PLO</li>
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+
+                    <div class="card mb-4">
+                        <div class="card-header d-flex justify-content-between align-items-center">
+                            <div>
+                                <i class="bi bi-list-check"></i>
+                                Danh sách PLO
+                            </div>
+                            <div>
+                                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#plo-modal">
+                                    <i class="bi bi-plus-circle"></i> Thêm PLO
+                                </button>
+                                <button class="btn btn-success">
+                                    <i class="bi bi-file-excel"></i> Xuất Excel
+                                </button>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="row mb-3">
+                                <div class="col-md-4">
+                                    <label for="program-filter" class="form-label">Chương trình đào tạo</label>
+                                    <select class="form-select" id="program-filter">
+                                        <option value="ME2025">Kỹ thuật Cơ khí</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>Mã</th>
+                                            <th>Mô tả</th>
+                                            <th>Cấp độ Bloom</th>
+                                            <th>Phân loại</th>
+                                            <th>Trạng thái</th>
+                                            <th>Thao tác</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="plo-table">
+                                        <tr>
+                                            <td>PLO1</td>
+                                            <td>Áp dụng kiến thức toán học, khoa học và kỹ thuật để giải quyết các vấn đề cơ khí phức tạp.</td>
+                                            <td>Áp dụng</td>
+                                            <td>Kiến thức</td>
+                                            <td><span class="badge bg-success">Hoạt động</span></td>
+                                            <td>
+                                                <button class="btn btn-sm btn-primary"><i class="bi bi-pencil"></i></button>
+                                                <button class="btn btn-sm btn-danger"><i class="bi bi-trash"></i></button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>PLO2</td>
+                                            <td>Thiết kế và thực hiện thí nghiệm, phân tích và diễn giải dữ liệu để rút ra kết luận hợp lý.</td>
+                                            <td>Phân tích</td>
+                                            <td>Kỹ năng</td>
+                                            <td><span class="badge bg-success">Hoạt động</span></td>
+                                            <td>
+                                                <button class="btn btn-sm btn-primary"><i class="bi bi-pencil"></i></button>
+                                                <button class="btn btn-sm btn-danger"><i class="bi bi-trash"></i></button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>PLO3</td>
+                                            <td>Thiết kế hệ thống, thành phần hoặc quy trình cơ khí đáp ứng nhu cầu thực tế với các ràng buộc về kinh tế, môi trường, xã hội, chính trị, đạo đức, sức khỏe và an toàn.</td>
+                                            <td>Sáng tạo</td>
+                                            <td>Kỹ năng</td>
+                                            <td><span class="badge bg-success">Hoạt động</span></td>
+                                            <td>
+                                                <button class="btn btn-sm btn-primary"><i class="bi bi-pencil"></i></button>
+                                                <button class="btn btn-sm btn-danger"><i class="bi bi-trash"></i></button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CLO Management Page -->
+                <div id="clo-management-page" class="page-content d-none">
+                    <div class="row mb-4">
+                        <div class="col">
+                            <h2><i class="bi bi-mortarboard"></i> Quản lý CLO</h2>
+                            <nav aria-label="breadcrumb">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="#dashboard">Trang chủ</a></li>
+                                    <li class="breadcrumb-item">Quản lý Chuẩn đầu ra</li>
+                                    <li class="breadcrumb-item active">Quản lý CLO</li>
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+
+                    <div class="card mb-4">
+                        <div class="card-header d-flex justify-content-between align-items-center">
+                            <div>
+                                <i class="bi bi-list-check"></i>
+                                Danh sách CLO
+                            </div>
+                            <div>
+                                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#clo-modal">
+                                    <i class="bi bi-plus-circle"></i> Thêm CLO
+                                </button>
+                                <button class="btn btn-success">
+                                    <i class="bi bi-file-excel"></i> Xuất Excel
+                                </button>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="row mb-3">
+                                <div class="col-md-4">
+                                    <label for="course-filter" class="form-label">Học phần</label>
+                                    <select class="form-select" id="course-filter">
+                                        <option value="ME101">ME101 - Nhập môn Kỹ thuật Cơ khí</option>
+                                        <option value="ME201">ME201 - Cơ học Vật rắn</option>
+                                        <option value="ME301">ME301 - Thiết kế Máy</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>Mã</th>
+                                            <th>Mô tả</th>
+                                            <th>Cấp độ Bloom</th>
+                                            <th>Phân loại</th>
+                                            <th>Trạng thái</th>
+                                            <th>Thao tác</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="clo-table">
+                                        <tr>
+                                            <td>CLO1</td>
+                                            <td>Mô tả các nguyên lý cơ bản của kỹ thuật cơ khí.</td>
+                                            <td>Hiểu</td>
+                                            <td>Kiến thức</td>
+                                            <td><span class="badge bg-success">Hoạt động</span></td>
+                                            <td>
+                                                <button class="btn btn-sm btn-primary"><i class="bi bi-pencil"></i></button>
+                                                <button class="btn btn-sm btn-danger"><i class="bi bi-trash"></i></button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>CLO2</td>
+                                            <td>Xác định các thành phần cơ bản của hệ thống cơ khí.</td>
+                                            <td>Hiểu</td>
+                                            <td>Kiến thức</td>
+                                            <td><span class="badge bg-success">Hoạt động</span></td>
+                                            <td>
+                                                <button class="btn btn-sm btn-primary"><i class="bi bi-pencil"></i></button>
+                                                <button class="btn btn-sm btn-danger"><i class="bi bi-trash"></i></button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>CLO3</td>
+                                            <td>Sử dụng các công cụ cơ bản trong kỹ thuật cơ khí.</td>
+                                            <td>Áp dụng</td>
+                                            <td>Kỹ năng</td>
+                                            <td><span class="badge bg-success">Hoạt động</span></td>
+                                            <td>
+                                                <button class="btn btn-sm btn-primary"><i class="bi bi-pencil"></i></button>
+                                                <button class="btn btn-sm btn-danger"><i class="bi bi-trash"></i></button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CLO-PLO Matrix Page -->
+                <div id="clo-plo-matrix-page" class="page-content d-none">
+                    <div class="row mb-4">
+                        <div class="col">
+                            <h2><i class="bi bi-grid-3x3"></i> Ma trận CLO-PLO</h2>
+                            <nav aria-label="breadcrumb">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="#dashboard">Trang chủ</a></li>
+                                    <li class="breadcrumb-item">Quản lý Chuẩn đầu ra</li>
+                                    <li class="breadcrumb-item active">Ma trận CLO-PLO</li>
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+
+                    <div class="card mb-4">
+                        <div class="card-header d-flex justify-content-between align-items-center">
+                            <div>
+                                <i class="bi bi-grid-3x3"></i>
+                                Ma trận CLO-PLO
+                            </div>
+                            <div>
+                                <button class="btn btn-success">
+                                    <i class="bi bi-file-excel"></i> Xuất Excel
+                                </button>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="row mb-3">
+                                <div class="col-md-4">
+                                    <label for="matrix-course-filter" class="form-label">Học phần</label>
+                                    <select class="form-select" id="matrix-course-filter">
+                                        <option value="ME101">ME101 - Nhập môn Kỹ thuật Cơ khí</option>
+                                        <option value="ME201">ME201 - Cơ học Vật rắn</option>
+                                        <option value="ME301">ME301 - Thiết kế Máy</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>CLO / PLO</th>
+                                            <th>PLO1</th>
+                                            <th>PLO2</th>
+                                            <th>PLO3</th>
+                                            <th>PLO4</th>
+                                            <th>PLO5</th>
+                                            <th>PLO6</th>
+                                            <th>PLO7</th>
+                                            <th>PLO8</th>
+                                            <th>PLO9</th>
+                                            <th>PLO10</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="clo-plo-matrix-table">
+                                        <tr>
+                                            <td>CLO1</td>
+                                            <td class="text-center"><i class="bi bi-circle-fill text-primary"></i></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td>CLO2</td>
+                                            <td class="text-center"><i class="bi bi-circle-fill text-primary"></i></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td>CLO3</td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td class="text-center"><i class="bi bi-circle-fill text-danger"></i></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="mt-3">
+                                <p><i class="bi bi-circle-fill text-danger"></i> Đóng góp mạnh</p>
+                                <p><i class="bi bi-circle-fill text-primary"></i> Đóng góp vừa</p>
+                                <p><i class="bi bi-circle-fill text-secondary"></i> Đóng góp yếu</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CLO Report Page -->
+                <div id="clo-reports-page" class="page-content d-none">
+                    <div class="row mb-4">
+                        <div class="col">
+                            <h2><i class="bi bi-bar-chart-steps"></i> Báo cáo CLO</h2>
+                            <nav aria-label="breadcrumb">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="#dashboard">Trang chủ</a></li>
+                                    <li class="breadcrumb-item">Báo cáo</li>
+                                    <li class="breadcrumb-item active">Báo cáo CLO</li>
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+
+                    <div class="card mb-4">
+                        <div class="card-header d-flex justify-content-between align-items-center">
+                            <div>
+                                <i class="bi bi-bar-chart-steps"></i>
+                                Báo cáo CLO
+                            </div>
+                            <div>
+                                <button class="btn btn-primary" id="generate-clo-report-btn">
+                                    <i class="bi bi-arrow-repeat"></i> Tạo báo cáo
+                                </button>
+                                <button class="btn btn-success">
+                                    <i class="bi bi-file-excel"></i> Xuất Excel
+                                </button>
+                                <button class="btn btn-danger">
+                                    <i class="bi bi-file-pdf"></i> Xuất PDF
+                                </button>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="row mb-3">
+                                <div class="col-md-4">
+                                    <label for="clo-report-course-filter" class="form-label">Học phần</label>
+                                    <select class="form-select" id="clo-report-course-filter">
+                                        <option value="ME101">ME101 - Nhập môn Kỹ thuật Cơ khí</option>
+                                        <option value="ME201">ME201 - Cơ học Vật rắn</option>
+                                        <option value="ME301">ME301 - Thiết kế Máy</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="clo-report-class-filter" class="form-label">Lớp</label>
+                                    <select class="form-select" id="clo-report-class-filter">
+                                        <option value="C001">ME101-01</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="clo-report-semester-filter" class="form-label">Học kỳ</label>
+                                    <select class="form-select" id="clo-report-semester-filter">
+                                        <option value="2025-1">2025-1</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div class="row mb-4">
+                                <div class="col-md-12">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <canvas id="clo-report-chart" width="100%" height="40"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>Mã CLO</th>
+                                            <th>Mô tả</th>
+                                            <th>Tổng số SV</th>
+                                            <th>Số SV đạt</th>
+                                            <th>Tỷ lệ đạt</th>
+                                            <th>Điểm trung bình</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="clo-report-table">
+                                        <tr>
+                                            <td>CLO1</td>
+                                            <td>Mô tả các nguyên lý cơ bản của kỹ thuật cơ khí.</td>
+                                            <td>30</td>
+                                            <td>25</td>
+                                            <td>83%</td>
+                                            <td>7.8</td>
+                                        </tr>
+                                        <tr>
+                                            <td>CLO2</td>
+                                            <td>Xác định các thành phần cơ bản của hệ thống cơ khí.</td>
+                                            <td>30</td>
+                                            <td>22</td>
+                                            <td>73%</td>
+                                            <td>7.2</td>
+                                        </tr>
+                                        <tr>
+                                            <td>CLO3</td>
+                                            <td>Sử dụng các công cụ cơ bản trong kỹ thuật cơ khí.</td>
+                                            <td>30</td>
+                                            <td>28</td>
+                                            <td>93%</td>
+                                            <td>8.1</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Course Management Page -->
+                <div id="course-management-page" class="page-content d-none">
+                    <div class="row mb-4">
+                        <div class="col">
+                            <h2><i class="bi bi-book"></i> Quản lý Học phần</h2>
+                            <nav aria-label="breadcrumb">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="#dashboard">Trang chủ</a></li>
+                                    <li class="breadcrumb-item active">Quản lý Học phần</li>
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header d-flex justify-content-between align-items-center">
+                            <h5 class="card-title mb-0">Danh sách Học phần</h5>
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#course-modal">
+                                <i class="bi bi-plus-circle"></i> Thêm Học phần
+                            </button>
+                        </div>
+                        <div class="card-body">
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <div class="input-group">
+                                        <span class="input-group-text"><i class="bi bi-search"></i></span>
+                                        <input type="text" class="form-control" id="course-search" placeholder="Tìm kiếm học phần...">
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <select class="form-select" id="course-filter-program">
+                                        <option value="">Tất cả chương trình</option>
+                                        <option value="ME2025">Kỹ thuật Cơ khí</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-3">
+                                    <button type="button" class="btn btn-outline-success" id="export-courses-btn">
+                                        <i class="bi bi-download"></i> Xuất Excel
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>Mã HP</th>
+                                            <th>Tên học phần</th>
+                                            <th>Số tín chỉ</th>
+                                            <th>Chương trình</th>
+                                            <th>Số CLO</th>
+                                            <th>Trạng thái</th>
+                                            <th width="120">Thao tác</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="course-table">
+                                        <!-- Course data will be loaded here -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Assessment Groups Management Page -->
+                <div id="assessment-groups-page" class="page-content d-none">
+                    <div class="row mb-4">
+                        <div class="col">
+                            <h2><i class="bi bi-clipboard-check"></i> Quản lý Nhóm đánh giá</h2>
+                            <nav aria-label="breadcrumb">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="#dashboard">Trang chủ</a></li>
+                                    <li class="breadcrumb-item active">Nhóm đánh giá</li>
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header d-flex justify-content-between align-items-center">
+                            <h5 class="card-title mb-0">Danh sách Nhóm đánh giá</h5>
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#assessment-group-modal">
+                                <i class="bi bi-plus-circle"></i> Thêm Nhóm đánh giá
+                            </button>
+                        </div>
+                        <div class="card-body">
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <div class="input-group">
+                                        <span class="input-group-text"><i class="bi bi-search"></i></span>
+                                        <input type="text" class="form-control" id="assessment-search" placeholder="Tìm kiếm nhóm đánh giá...">
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <select class="form-select" id="assessment-filter-type">
+                                        <option value="">Tất cả loại</option>
+                                        <option value="exam">Thi</option>
+                                        <option value="assignment">Bài tập</option>
+                                        <option value="project">Đồ án</option>
+                                        <option value="presentation">Thuyết trình</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>Tên nhóm</th>
+                                            <th>Loại đánh giá</th>
+                                            <th>Học phần</th>
+                                            <th>Trọng số (%)</th>
+                                            <th>Số câu hỏi</th>
+                                            <th>Ngày tạo</th>
+                                            <th width="120">Thao tác</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="assessment-group-table">
+                                        <!-- Assessment group data will be loaded here -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Questions Management Page -->
+                <div id="questions-page" class="page-content d-none">
+                    <div class="row mb-4">
+                        <div class="col">
+                            <h2><i class="bi bi-question-circle"></i> Quản lý Câu hỏi/Tiêu chí</h2>
+                            <nav aria-label="breadcrumb">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="#dashboard">Trang chủ</a></li>
+                                    <li class="breadcrumb-item active">Câu hỏi/Tiêu chí</li>
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header d-flex justify-content-between align-items-center">
+                            <h5 class="card-title mb-0">Danh sách Câu hỏi/Tiêu chí</h5>
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#question-modal">
+                                <i class="bi bi-plus-circle"></i> Thêm Câu hỏi
+                            </button>
+                        </div>
+                        <div class="card-body">
+                            <div class="row mb-3">
+                                <div class="col-md-4">
+                                    <div class="input-group">
+                                        <span class="input-group-text"><i class="bi bi-search"></i></span>
+                                        <input type="text" class="form-control" id="question-search" placeholder="Tìm kiếm câu hỏi...">
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <select class="form-select" id="question-filter-group">
+                                        <option value="">Tất cả nhóm</option>
+                                        <!-- Will be populated dynamically -->
+                                    </select>
+                                </div>
+                                <div class="col-md-3">
+                                    <select class="form-select" id="question-filter-clo">
+                                        <option value="">Tất cả CLO</option>
+                                        <!-- Will be populated dynamically -->
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>STT</th>
+                                            <th>Nội dung</th>
+                                            <th>Nhóm đánh giá</th>
+                                            <th>CLO</th>
+                                            <th>Điểm tối đa</th>
+                                            <th>Loại</th>
+                                            <th width="120">Thao tác</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="question-table">
+                                        <!-- Question data will be loaded here -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Score Management Page -->
+                <div id="scores-page" class="page-content d-none">
+                    <div class="row mb-4">
+                        <div class="col">
+                            <h2><i class="bi bi-calculator"></i> Quản lý Điểm số</h2>
+                            <nav aria-label="breadcrumb">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="#dashboard">Trang chủ</a></li>
+                                    <li class="breadcrumb-item active">Nhập điểm</li>
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+
+                    <div class="row mb-4">
+                        <div class="col-md-6">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5 class="card-title mb-0"><i class="bi bi-upload"></i> Nhập điểm từ File</h5>
+                                </div>
+                                <div class="card-body">
+                                    <form id="score-upload-form" enctype="multipart/form-data">
+                                        <div class="mb-3">
+                                            <label for="score-file" class="form-label">Chọn file Excel/CSV</label>
+                                            <input type="file" class="form-control" id="score-file" accept=".xlsx,.xls,.csv" required>
+                                            <div class="form-text">Hỗ trợ định dạng: .xlsx, .xls, .csv (tối đa 5MB)</div>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="score-assessment-group" class="form-label">Nhóm đánh giá</label>
+                                            <select class="form-select" id="score-assessment-group" required>
+                                                <option value="">Chọn nhóm đánh giá</option>
+                                                <!-- Will be populated dynamically -->
+                                            </select>
+                                        </div>
+                                        <button type="submit" class="btn btn-primary">
+                                            <i class="bi bi-upload"></i> Tải lên và xử lý
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5 class="card-title mb-0"><i class="bi bi-info-circle"></i> Hướng dẫn</h5>
+                                </div>
+                                <div class="card-body">
+                                    <p>Định dạng file Excel/CSV cần có các cột:</p>
+                                    <ul>
+                                        <li><strong>student_id:</strong> Mã sinh viên</li>
+                                        <li><strong>question_1, question_2, ...:</strong> Điểm từng câu hỏi</li>
+                                    </ul>
+                                    <p class="mb-0">
+                                        <a href="#" id="download-template-btn" class="btn btn-outline-primary btn-sm">
+                                            <i class="bi bi-download"></i> Tải template mẫu
+                                        </a>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header d-flex justify-content-between align-items-center">
+                            <h5 class="card-title mb-0">Dữ liệu Điểm số</h5>
+                            <div>
+                                <select class="form-select d-inline-block w-auto me-2" id="score-filter-group">
+                                    <option value="">Tất cả nhóm đánh giá</option>
+                                    <!-- Will be populated dynamically -->
+                                </select>
+                                <button type="button" class="btn btn-outline-success" id="export-scores-btn">
+                                    <i class="bi bi-download"></i> Xuất Excel
+                                </button>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-hover">
+                                    <thead id="score-table-header">
+                                        <!-- Will be generated dynamically based on questions -->
+                                    </thead>
+                                    <tbody id="score-table">
+                                        <!-- Score data will be loaded here -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- User Management Page -->
+                <div id="user-management-page" class="page-content d-none">
+                    <div class="row mb-4">
+                        <div class="col">
+                            <h2><i class="bi bi-people"></i> Quản lý Người dùng</h2>
+                            <nav aria-label="breadcrumb">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="#dashboard">Trang chủ</a></li>
+                                    <li class="breadcrumb-item active">Quản lý Người dùng</li>
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header d-flex justify-content-between align-items-center">
+                            <h5 class="card-title mb-0">Danh sách Người dùng</h5>
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#user-modal">
+                                <i class="bi bi-plus-circle"></i> Thêm Người dùng
+                            </button>
+                        </div>
+                        <div class="card-body">
+                            <div class="row mb-3">
+                                <div class="col-md-4">
+                                    <div class="input-group">
+                                        <span class="input-group-text"><i class="bi bi-search"></i></span>
+                                        <input type="text" class="form-control" id="user-search" placeholder="Tìm kiếm người dùng...">
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <select class="form-select" id="user-filter-role">
+                                        <option value="">Tất cả vai trò</option>
+                                        <option value="admin">Quản trị viên</option>
+                                        <option value="teacher">Giảng viên</option>
+                                        <option value="assistant">Trợ giảng</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-3">
+                                    <select class="form-select" id="user-filter-department">
+                                        <option value="">Tất cả khoa</option>
+                                        <!-- Will be populated dynamically -->
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>Tên đăng nhập</th>
+                                            <th>Họ tên</th>
+                                            <th>Email</th>
+                                            <th>Vai trò</th>
+                                            <th>Khoa/Bộ môn</th>
+                                            <th>Trạng thái</th>
+                                            <th width="120">Thao tác</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="user-table">
+                                        <!-- User data will be loaded here -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Department Management Page -->
+                <div id="department-management-page" class="page-content d-none">
+                    <div class="row mb-4">
+                        <div class="col">
+                            <h2><i class="bi bi-building"></i> Quản lý Khoa/Bộ môn</h2>
+                            <nav aria-label="breadcrumb">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="#dashboard">Trang chủ</a></li>
+                                    <li class="breadcrumb-item active">Quản lý Khoa/Bộ môn</li>
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header d-flex justify-content-between align-items-center">
+                            <h5 class="card-title mb-0">Danh sách Khoa/Bộ môn</h5>
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#department-modal">
+                                <i class="bi bi-plus-circle"></i> Thêm Khoa/Bộ môn
+                            </button>
+                        </div>
+                        <div class="card-body">
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <div class="input-group">
+                                        <span class="input-group-text"><i class="bi bi-search"></i></span>
+                                        <input type="text" class="form-control" id="department-search" placeholder="Tìm kiếm khoa/bộ môn...">
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>Mã khoa</th>
+                                            <th>Tên khoa/bộ môn</th>
+                                            <th>Mô tả</th>
+                                            <th>Số người dùng</th>
+                                            <th>Trạng thái</th>
+                                            <th width="120">Thao tác</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="department-table">
+                                        <!-- Department data will be loaded here -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PLO Reports Page -->
+                <div id="plo-reports-page" class="page-content d-none">
+                    <div class="row mb-4">
+                        <div class="col">
+                            <h2><i class="bi bi-bar-chart"></i> Báo cáo PLO</h2>
+                            <nav aria-label="breadcrumb">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="#dashboard">Trang chủ</a></li>
+                                    <li class="breadcrumb-item">Báo cáo</li>
+                                    <li class="breadcrumb-item active">Báo cáo PLO</li>
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+
+                    <div class="row mb-4">
+                        <div class="col-md-3">
+                            <select class="form-select" id="plo-report-program">
+                                <option value="">Chọn chương trình</option>
+                                <option value="ME2025">Kỹ thuật Cơ khí</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            <select class="form-select" id="plo-report-semester">
+                                <option value="">Chọn học kỳ</option>
+                                <option value="2024-1">HK1 2024-2025</option>
+                                <option value="2024-2">HK2 2024-2025</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            <button type="button" class="btn btn-primary" id="generate-plo-report-btn">
+                                <i class="bi bi-bar-chart"></i> Tạo báo cáo
+                            </button>
+                        </div>
+                        <div class="col-md-3">
+                            <button type="button" class="btn btn-outline-success" id="export-plo-report-btn">
+                                <i class="bi bi-download"></i> Xuất Excel
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5 class="card-title mb-0">Biểu đồ tỷ lệ đạt PLO</h5>
+                                </div>
+                                <div class="card-body">
+                                    <canvas id="plo-achievement-chart" width="400" height="300"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5 class="card-title mb-0">Phân bố điểm PLO</h5>
+                                </div>
+                                <div class="card-body">
+                                    <canvas id="plo-distribution-chart" width="400" height="300"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card mt-4">
+                        <div class="card-header">
+                            <h5 class="card-title mb-0">Chi tiết Báo cáo PLO</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>Mã PLO</th>
+                                            <th>Mô tả</th>
+                                            <th>Tổng số SV</th>
+                                            <th>Số SV đạt</th>
+                                            <th>Tỷ lệ đạt</th>
+                                            <th>Điểm trung bình</th>
+                                            <th>Số CLO liên quan</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="plo-report-table">
+                                        <!-- PLO report data will be loaded here -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <footer class="py-4 bg-light mt-auto">
+                <div class="container-fluid px-4">
+                    <div class="d-flex align-items-center justify-content-between small">
+                        <div class="text-muted">Bản quyền &copy; Trường Đại học Công nghệ Đông Á 2025</div>
+                        <div>
+                            <a href="#">Chính sách bảo mật</a>
+                            &middot;
+                            <a href="#">Điều khoản &amp; Điều kiện</a>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    <!-- Modals -->
+    <!-- PLO Modal -->
+    <div class="modal fade" id="plo-modal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Thêm/Chỉnh sửa PLO</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="plo-form">
+                        <div class="mb-3">
+                            <label for="plo-program" class="form-label">Chương trình đào tạo</label>
+                            <select class="form-select" id="plo-program" required>
+                                <option value="ME2025">Kỹ thuật Cơ khí</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="plo-code" class="form-label">Mã PLO</label>
+                            <input type="text" class="form-control" id="plo-code" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="plo-description" class="form-label">Mô tả</label>
+                            <textarea class="form-control" id="plo-description" rows="3" required></textarea>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="plo-bloom" class="form-label">Cấp độ Bloom</label>
+                                <select class="form-select" id="plo-bloom" required>
+                                    <option value="Nhớ">Nhớ</option>
+                                    <option value="Hiểu">Hiểu</option>
+                                    <option value="Áp dụng">Áp dụng</option>
+                                    <option value="Phân tích">Phân tích</option>
+                                    <option value="Đánh giá">Đánh giá</option>
+                                    <option value="Sáng tạo">Sáng tạo</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="plo-category" class="form-label">Phân loại</label>
+                                <select class="form-select" id="plo-category" required>
+                                    <option value="Kiến thức">Kiến thức</option>
+                                    <option value="Kỹ năng">Kỹ năng</option>
+                                    <option value="Kỹ năng mềm">Kỹ năng mềm</option>
+                                    <option value="Thái độ">Thái độ</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="plo-status" class="form-label">Trạng thái</label>
+                            <select class="form-select" id="plo-status" required>
+                                <option value="active">Hoạt động</option>
+                                <option value="inactive">Không hoạt động</option>
+                            </select>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                    <button type="button" class="btn btn-primary" id="save-plo-btn">Lưu</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CLO Modal -->
+    <div class="modal fade" id="clo-modal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Thêm/Chỉnh sửa CLO</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="clo-form">
+                        <div class="mb-3">
+                            <label for="clo-course" class="form-label">Học phần</label>
+                            <select class="form-select" id="clo-course" required>
+                                <option value="ME101">ME101 - Nhập môn Kỹ thuật Cơ khí</option>
+                                <option value="ME201">ME201 - Cơ học Vật rắn</option>
+                                <option value="ME301">ME301 - Thiết kế Máy</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="clo-code" class="form-label">Mã CLO</label>
+                            <input type="text" class="form-control" id="clo-code" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="clo-description" class="form-label">Mô tả</label>
+                            <textarea class="form-control" id="clo-description" rows="3" required></textarea>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="clo-bloom" class="form-label">Cấp độ Bloom</label>
+                                <select class="form-select" id="clo-bloom" required>
+                                    <option value="Nhớ">Nhớ</option>
+                                    <option value="Hiểu">Hiểu</option>
+                                    <option value="Áp dụng">Áp dụng</option>
+                                    <option value="Phân tích">Phân tích</option>
+                                    <option value="Đánh giá">Đánh giá</option>
+                                    <option value="Sáng tạo">Sáng tạo</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="clo-category" class="form-label">Phân loại</label>
+                                <select class="form-select" id="clo-category" required>
+                                    <option value="Kiến thức">Kiến thức</option>
+                                    <option value="Kỹ năng">Kỹ năng</option>
+                                    <option value="Kỹ năng mềm">Kỹ năng mềm</option>
+                                    <option value="Thái độ">Thái độ</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="clo-status" class="form-label">Trạng thái</label>
+                            <select class="form-select" id="clo-status" required>
+                                <option value="active">Hoạt động</option>
+                                <option value="inactive">Không hoạt động</option>
+                            </select>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                    <button type="button" class="btn btn-primary" id="save-clo-btn">Lưu</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Course Modal -->
+    <div class="modal fade" id="course-modal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Thêm/Chỉnh sửa Học phần</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="course-form">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="course-code" class="form-label">Mã học phần</label>
+                                <input type="text" class="form-control" id="course-code" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="course-credits" class="form-label">Số tín chỉ</label>
+                                <input type="number" class="form-control" id="course-credits" min="1" max="10" required>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="course-name" class="form-label">Tên học phần</label>
+                            <input type="text" class="form-control" id="course-name" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="course-description" class="form-label">Mô tả</label>
+                            <textarea class="form-control" id="course-description" rows="3"></textarea>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="course-program" class="form-label">Chương trình đào tạo</label>
+                                <select class="form-select" id="course-program" required>
+                                    <option value="ME2025">Kỹ thuật Cơ khí</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="course-status" class="form-label">Trạng thái</label>
+                                <select class="form-select" id="course-status" required>
+                                    <option value="active">Hoạt động</option>
+                                    <option value="inactive">Không hoạt động</option>
+                                </select>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                    <button type="button" class="btn btn-primary" id="save-course-btn">Lưu</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Assessment Group Modal -->
+    <div class="modal fade" id="assessment-group-modal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Thêm/Chỉnh sửa Nhóm đánh giá</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="assessment-group-form">
+                        <div class="mb-3">
+                            <label for="assessment-group-name" class="form-label">Tên nhóm đánh giá</label>
+                            <input type="text" class="form-control" id="assessment-group-name" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="assessment-group-description" class="form-label">Mô tả</label>
+                            <textarea class="form-control" id="assessment-group-description" rows="3"></textarea>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="assessment-group-type" class="form-label">Loại đánh giá</label>
+                                <select class="form-select" id="assessment-group-type" required>
+                                    <option value="exam">Thi</option>
+                                    <option value="assignment">Bài tập</option>
+                                    <option value="project">Đồ án</option>
+                                    <option value="presentation">Thuyết trình</option>
+                                    <option value="lab">Thực hành</option>
+                                    <option value="other">Khác</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="assessment-group-weight" class="form-label">Trọng số (%)</label>
+                                <input type="number" class="form-control" id="assessment-group-weight" min="0" max="100" step="0.1" required>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="assessment-group-course" class="form-label">Học phần</label>
+                            <select class="form-select" id="assessment-group-course" required>
+                                <!-- Will be populated dynamically -->
+                            </select>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                    <button type="button" class="btn btn-primary" id="save-assessment-group-btn">Lưu</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Question Modal -->
+    <div class="modal fade" id="question-modal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Thêm/Chỉnh sửa Câu hỏi/Tiêu chí</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="question-form">
+                        <div class="mb-3">
+                            <label for="question-content" class="form-label">Nội dung câu hỏi/tiêu chí</label>
+                            <textarea class="form-control" id="question-content" rows="4" required></textarea>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="question-assessment-group" class="form-label">Nhóm đánh giá</label>
+                                <select class="form-select" id="question-assessment-group" required>
+                                    <!-- Will be populated dynamically -->
+                                </select>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="question-clo" class="form-label">CLO liên quan</label>
+                                <select class="form-select" id="question-clo" required>
+                                    <!-- Will be populated dynamically -->
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="question-max-score" class="form-label">Điểm tối đa</label>
+                                <input type="number" class="form-control" id="question-max-score" min="0" step="0.1" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="question-type" class="form-label">Loại câu hỏi</label>
+                                <select class="form-select" id="question-type" required>
+                                    <option value="multiple-choice">Trắc nghiệm</option>
+                                    <option value="essay">Tự luận</option>
+                                    <option value="practical">Thực hành</option>
+                                    <option value="presentation">Thuyết trình</option>
+                                    <option value="project">Đồ án</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="question-order" class="form-label">Thứ tự</label>
+                            <input type="number" class="form-control" id="question-order" min="1">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                    <button type="button" class="btn btn-primary" id="save-question-btn">Lưu</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- User Modal -->
+    <div class="modal fade" id="user-modal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Thêm/Chỉnh sửa Người dùng</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="user-form">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="user-username" class="form-label">Tên đăng nhập</label>
+                                <input type="text" class="form-control" id="user-username" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="user-email" class="form-label">Email</label>
+                                <input type="email" class="form-control" id="user-email" required>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="user-fullname" class="form-label">Họ tên</label>
+                                <input type="text" class="form-control" id="user-fullname" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="user-phone" class="form-label">Số điện thoại</label>
+                                <input type="tel" class="form-control" id="user-phone">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="user-role" class="form-label">Vai trò</label>
+                                <select class="form-select" id="user-role" required>
+                                    <option value="admin">Quản trị viên</option>
+                                    <option value="teacher">Giảng viên</option>
+                                    <option value="assistant">Trợ giảng</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="user-department" class="form-label">Khoa/Bộ môn</label>
+                                <select class="form-select" id="user-department" required>
+                                    <!-- Will be populated dynamically -->
+                                </select>
+                            </div>
+                        </div>
+                        <div class="mb-3" id="password-section">
+                            <label for="user-password" class="form-label">Mật khẩu</label>
+                            <input type="password" class="form-control" id="user-password">
+                            <div class="form-text">Để trống nếu không muốn thay đổi mật khẩu</div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="user-status" class="form-label">Trạng thái</label>
+                            <select class="form-select" id="user-status" required>
+                                <option value="active">Hoạt động</option>
+                                <option value="inactive">Không hoạt động</option>
+                            </select>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                    <button type="button" class="btn btn-primary" id="save-user-btn">Lưu</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Department Modal -->
+    <div class="modal fade" id="department-modal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Thêm/Chỉnh sửa Khoa/Bộ môn</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="department-form">
+                        <div class="mb-3">
+                            <label for="department-code" class="form-label">Mã khoa</label>
+                            <input type="text" class="form-control" id="department-code" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="department-name" class="form-label">Tên khoa/bộ môn</label>
+                            <input type="text" class="form-control" id="department-name" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="department-description" class="form-label">Mô tả</label>
+                            <textarea class="form-control" id="department-description" rows="3"></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="department-status" class="form-label">Trạng thái</label>
+                            <select class="form-select" id="department-status" required>
+                                <option value="active">Hoạt động</option>
+                                <option value="inactive">Không hoạt động</option>
+                            </select>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                    <button type="button" class="btn btn-primary" id="save-department-btn">Lưu</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-light py-4 mt-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <h6><i class="bi bi-building"></i> Trường Đại học Công nghệ Đông Á</h6>
+                    <p class="small">East Asia University of Technology (EAUT)</p>
+                    <p class="small">Quyết định thành lập số: 1777/QĐ-TTg</p>
+                    <p class="small text-warning">"Thực học, Thực danh, Thực hành, Thực nghiệp"</p>
+                </div>
+                <div class="col-md-4">
+                    <h6><i class="bi bi-geo-alt"></i> Cơ sở đào tạo</h6>
+                    <p class="small mb-1"><strong>Hà Nội:</strong></p>
+                    <p class="small">Đường Trịnh Văn Bô, Nam Từ Liêm, Hà Nội</p>
+                    <p class="small mb-1"><strong>Bắc Ninh:</strong></p>
+                    <p class="small">Làng Đại học, Phường Võ Cường, Bắc Ninh</p>
+                </div>
+                <div class="col-md-4">
+                    <h6><i class="bi bi-telephone"></i> Liên hệ</h6>
+                    <p class="small mb-1">Hotline: 0243.555.2008</p>
+                    <p class="small mb-1">Điện thoại: 024.2236.5888</p>
+                    <p class="small mb-1">Email: tuyensinh@eaut.edu.vn</p>
+                    <div class="mt-3">
+                        <a href="https://www.facebook.com/dhcnDongA" class="text-light me-3" target="_blank">
+                            <i class="bi bi-facebook fs-5"></i>
+                        </a>
+                        <a href="https://www.youtube.com/channel/UCwYTgSfbu6Cmoe8VcAhkTcg" class="text-light me-3" target="_blank">
+                            <i class="bi bi-youtube fs-5"></i>
+                        </a>
+                        <a href="https://www.instagram.com/daihoccongnghedonga/" class="text-light me-3" target="_blank">
+                            <i class="bi bi-instagram fs-5"></i>
+                        </a>
+                        <a href="https://www.tiktok.com/@daihoccongnghedonga" class="text-light" target="_blank">
+                            <i class="bi bi-tiktok fs-5"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <hr class="my-4">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <p class="small mb-0">© 2025 EAUT Assessment Platform - Hệ thống Đánh giá Chuẩn đầu ra</p>
+                    <p class="small text-muted">Phát triển bởi Trường Đại học Công nghệ Đông Á</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.0.0/dist/chart.umd.min.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

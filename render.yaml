@@ -1,0 +1,38 @@
+services:
+  - type: web
+    name: eaut-assessment-platform
+    env: node
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000
+      - key: DB_HOST
+        fromDatabase:
+          name: eaut-assessment-db
+          property: host
+      - key: DB_PORT
+        fromDatabase:
+          name: eaut-assessment-db
+          property: port
+      - key: DB_NAME
+        fromDatabase:
+          name: eaut-assessment-db
+          property: database
+      - key: DB_USER
+        fromDatabase:
+          name: eaut-assessment-db
+          property: user
+      - key: DB_PASSWORD
+        fromDatabase:
+          name: eaut-assessment-db
+          property: password
+
+databases:
+  - name: eaut-assessment-db
+    databaseName: eaut_assessment
+    user: postgres
+    postgresMajorVersion: 15
