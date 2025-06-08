@@ -1,4 +1,4 @@
-# 🎓 EAUT Assessment Platform - Cấu trúc Dự án Đã Sắp xếp
+# 🎓 EAUT Assessment Platform
 
 [![Organization](https://img.shields.io/badge/structure-scientific-brightgreen.svg)](./docs/english/PROJECT_STRUCTURE.md)
 [![Documentation](https://img.shields.io/badge/docs-complete-blue.svg)](./docs/)
