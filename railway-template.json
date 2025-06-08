@@ -1,0 +1,40 @@
+{
+  "name": "EAUT Assessment Platform",
+  "description": "Complete Educational Assessment Platform with backend functionality",
+  "logo": "https://raw.githubusercontent.com/Bennguyenru/eaut-assessment-platform/main/public/favicon.ico",
+  "keywords": ["education", "assessment", "learning-outcomes", "nodejs", "postgresql"],
+  "repository": "https://github.com/Bennguyenru/eaut-assessment-platform",
+  "template": {
+    "services": [
+      {
+        "name": "eaut-backend",
+        "source": {
+          "repo": "Bennguyenru/eaut-assessment-platform",
+          "branch": "main"
+        },
+        "variables": {
+          "NODE_ENV": "production",
+          "JWT_SECRET": {
+            "description": "Secret key for JWT tokens",
+            "generate": true
+          },
+          "BCRYPT_ROUNDS": "12"
+        }
+      },
+      {
+        "name": "eaut-database",
+        "source": {
+          "image": "postgres:15"
+        },
+        "variables": {
+          "POSTGRES_DB": "eaut_assessment",
+          "POSTGRES_USER": "postgres",
+          "POSTGRES_PASSWORD": {
+            "description": "PostgreSQL password",
+            "generate": true
+          }
+        }
+      }
+    ]
+  }
+}
