@@ -51,34 +51,79 @@ app.use(cors({
 }));
 app.use(bodyParser.json({ limit: '10mb' }));
 app.use(bodyParser.urlencoded({ extended: true, limit: '10mb' }));
-// Serve static files from the new directory structure
-app.use(express.static(path.join(__dirname, '../frontend')));
-app.use('/css', express.static(path.join(__dirname, '../frontend/css')));
-app.use('/js', express.static(path.join(__dirname, '../frontend/js')));
+// Serve static files from the appropriate directory structure
+// Support both development (../frontend) and production (../../public) paths
+const publicPath = path.join(__dirname, '../../public');
+const frontendPath = path.join(__dirname, '../frontend');
+
+// Check which directory exists and use it
+const staticPath = require('fs').existsSync(publicPath) ? publicPath : frontendPath;
+
+console.log(`📁 Serving static files from: ${staticPath}`);
+
+app.use(express.static(staticPath));
+app.use('/css', express.static(path.join(staticPath, 'css')));
+app.use('/js', express.static(path.join(staticPath, 'js')));
 app.use('/uploads', express.static(path.join(__dirname, '../../uploads')));
 app.use('/logs', express.static(path.join(__dirname, '../../logs')));
 
 // Database connection with improved error handling
-const pool = new Pool({
+// Support both DATABASE_URL (for Vercel/Railway) and individual parameters
+const dbConfig = process.env.DATABASE_URL ? {
+  connectionString: process.env.DATABASE_URL,
+  ssl: process.env.NODE_ENV === 'production' ? { rejectUnauthorized: false } : false,
+  max: 20,
+  idleTimeoutMillis: 30000,
+  connectionTimeoutMillis: 5000,
+} : {
   host: process.env.DB_HOST || 'localhost',
   port: process.env.DB_PORT || 5432,
   database: process.env.DB_NAME || 'eaut_assessment',
   user: process.env.DB_USER || 'postgres',
   password: process.env.DB_PASSWORD || 'postgres',
+  ssl: process.env.DB_SSL === 'true' ? { rejectUnauthorized: false } : false,
   max: 20,
   idleTimeoutMillis: 30000,
-  connectionTimeoutMillis: 2000,
-});
+  connectionTimeoutMillis: 5000,
+};
+
+const pool = new Pool(dbConfig);
 
 // Test database connection
 pool.on('connect', () => {
   console.log('✅ Connected to PostgreSQL database');
+  if (process.env.NODE_ENV === 'development') {
+    console.log('🔧 Database config:', {
+      host: dbConfig.host || 'via connection string',
+      database: dbConfig.database || 'via connection string',
+      ssl: dbConfig.ssl ? 'enabled' : 'disabled'
+    });
+  }
 });
 
 pool.on('error', (err) => {
-  console.error('❌ PostgreSQL connection error:', err);
-  process.exit(-1);
+  console.error('❌ PostgreSQL connection error:', err.message);
+  if (process.env.NODE_ENV === 'development') {
+    console.error('Database config check:', dbConfig);
+  }
+  // Don't exit process in production, let it retry
+  if (process.env.NODE_ENV !== 'production') {
+    process.exit(-1);
+  }
 });
+
+// Test initial connection
+pool.connect()
+  .then(client => {
+    console.log('🚀 Database connection successful');
+    client.release();
+  })
+  .catch(err => {
+    console.error('💥 Initial database connection failed:', err.message);
+    if (process.env.NODE_ENV !== 'production') {
+      console.error('Check your database configuration and ensure PostgreSQL is running');
+    }
+  });
 
 // JWT Secret
 const JWT_SECRET = process.env.JWT_SECRET || 'eaut-assessment-platform-secret-key';

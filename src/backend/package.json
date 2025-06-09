@@ -29,7 +29,11 @@
     "docker:run": "docker run -p 3000:3000 eaut-assessment",
     "docker:compose": "docker-compose -f ../../config/deployment/docker-compose.yml up -d",
     "monitor": "bash ../../tools/monitoring/system-status.sh",
-    "verify": "bash ../../tools/monitoring/verify-deployment.sh"
+    "verify": "bash ../../tools/monitoring/verify-deployment.sh",
+    "build:exe": "pkg . --out-path ../../dist/executable",
+    "build:portable": "npm run build:static && npm run build:exe",
+    "build:installer": "bash ../../scripts/deployment/build-installer.sh",
+    "prebuild": "npm run build:static"
   },
   "keywords": [
     "education",
@@ -49,28 +53,45 @@
   "author": "EAUT Development Team",
   "license": "MIT",
   "dependencies": {
-    "express": "^4.18.2",
+    "bcrypt": "^6.0.0",
+    "bcryptjs": "^2.4.3",
     "body-parser": "^1.20.2",
     "cors": "^2.8.5",
-    "pg": "^8.11.3",
-    "bcryptjs": "^2.4.3",
-    "jsonwebtoken": "^9.0.2",
     "dotenv": "^16.3.1",
-    "multer": "^1.4.5-lts.1",
-    "xlsx": "^0.18.5",
-    "express-validator": "^7.0.1",
+    "express": "^4.18.2",
     "express-rate-limit": "^6.10.0",
+    "express-validator": "^7.0.1",
     "helmet": "^7.1.0",
-    "morgan": "^1.10.0"
+    "jsonwebtoken": "^9.0.2",
+    "morgan": "^1.10.0",
+    "multer": "^1.4.5-lts.1",
+    "pg": "^8.11.3",
+    "xlsx": "^0.18.5"
   },
   "devDependencies": {
-    "nodemon": "^3.0.2",
-    "mocha": "^10.2.0",
     "chai": "^4.3.10",
+    "mocha": "^10.2.0",
+    "nexe": "^4.0.0-rc.6",
+    "nodemon": "^3.0.2",
+    "pkg": "^5.8.1",
     "supertest": "^6.3.3"
   },
   "engines": {
     "node": ">=14.0.0",
     "npm": ">=6.0.0"
+  },
+  "pkg": {
+    "assets": [
+      "../frontend/**/*",
+      "../database/**/*",
+      "../../config/**/*",
+      "node_modules/**/*"
+    ],
+    "targets": [
+      "node18-win-x64",
+      "node18-macos-x64",
+      "node18-linux-x64"
+    ],
+    "outputPath": "../../dist/executable"
   }
 }

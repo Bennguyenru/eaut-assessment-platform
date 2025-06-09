@@ -1,0 +1,239 @@
+/* styles.css - Main stylesheet for EAUT Assessment Platform */
+
+:root {
+    --primary-color: #0d6efd;
+    --secondary-color: #6c757d;
+    --success-color: #198754;
+    --danger-color: #dc3545;
+    --warning-color: #ffc107;
+    --info-color: #0dcaf0;
+    --light-color: #f8f9fa;
+    --dark-color: #212529;
+    --eaut-blue: #0056b3;
+    --eaut-red: #d9534f;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f5f5f5;
+}
+
+/* Login Page Styles */
+#login-page {
+    background: linear-gradient(135deg, var(--eaut-blue) 0%, #003366 100%);
+}
+
+#login-page .card {
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* Navbar Styles */
+.navbar {
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    background: linear-gradient(90deg, var(--eaut-blue) 0%, #004080 100%) !important;
+}
+
+.navbar-brand {
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.nav-link {
+    font-weight: 500;
+}
+
+.nav-link i {
+    margin-right: 5px;
+}
+
+/* Card Styles */
+.card {
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+}
+
+.card-header {
+    font-weight: 500;
+    background-color: rgba(0, 0, 0, 0.03);
+}
+
+/* Dashboard Cards */
+.card.bg-primary, .card.bg-success, .card.bg-warning, .card.bg-danger {
+    color: white;
+}
+
+.card.bg-primary {
+    background: linear-gradient(135deg, var(--primary-color) 0%, #0056b3 100%) !important;
+}
+
+.card.bg-success {
+    background: linear-gradient(135deg, var(--success-color) 0%, #157347 100%) !important;
+}
+
+.card.bg-warning {
+    background: linear-gradient(135deg, var(--warning-color) 0%, #e6a800 100%) !important;
+}
+
+.card.bg-danger {
+    background: linear-gradient(135deg, var(--danger-color) 0%, #b02a37 100%) !important;
+}
+
+/* Table Styles */
+.table {
+    vertical-align: middle;
+}
+
+.table th {
+    background-color: rgba(0, 0, 0, 0.03);
+    font-weight: 500;
+}
+
+.table-hover tbody tr:hover {
+    background-color: rgba(13, 110, 253, 0.05);
+}
+
+/* Button Styles */
+.btn {
+    border-radius: 5px;
+    font-weight: 500;
+}
+
+.btn-primary {
+    background-color: var(--eaut-blue);
+    border-color: var(--eaut-blue);
+}
+
+.btn-primary:hover {
+    background-color: #004080;
+    border-color: #004080;
+}
+
+.btn i {
+    margin-right: 5px;
+}
+
+/* Form Styles */
+.form-label {
+    font-weight: 500;
+}
+
+.form-control, .form-select {
+    border-radius: 5px;
+    padding: 0.5rem 0.75rem;
+}
+
+.form-control:focus, .form-select:focus {
+    border-color: var(--eaut-blue);
+    box-shadow: 0 0 0 0.25rem rgba(0, 86, 179, 0.25);
+}
+
+/* Badge Styles */
+.badge {
+    font-weight: 500;
+    padding: 0.5em 0.75em;
+}
+
+/* Chart Styles */
+canvas {
+    max-width: 100%;
+}
+
+/* Footer Styles */
+footer {
+    border-top: 1px solid #dee2e6;
+}
+
+/* Modal Styles */
+.modal-header {
+    background-color: var(--eaut-blue);
+    color: white;
+}
+
+.modal-footer {
+    background-color: rgba(0, 0, 0, 0.03);
+}
+
+/* Breadcrumb Styles */
+.breadcrumb {
+    background-color: transparent;
+    padding: 0.5rem 0;
+}
+
+.breadcrumb-item a {
+    color: var(--eaut-blue);
+    text-decoration: none;
+}
+
+.breadcrumb-item a:hover {
+    text-decoration: underline;
+}
+
+/* CLO-PLO Matrix Styles */
+.bi-circle-fill.text-danger {
+    color: var(--danger-color);
+}
+
+.bi-circle-fill.text-primary {
+    color: var(--primary-color);
+}
+
+.bi-circle-fill.text-secondary {
+    color: var(--secondary-color);
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .card-body {
+        padding: 1rem;
+    }
+    
+    .table-responsive {
+        font-size: 0.9rem;
+    }
+    
+    .btn {
+        padding: 0.25rem 0.5rem;
+        font-size: 0.875rem;
+    }
+}
+
+/* Animation Styles */
+.fade-in {
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Print Styles */
+@media print {
+    .no-print {
+        display: none !important;
+    }
+    
+    .card {
+        box-shadow: none !important;
+        border: 1px solid #dee2e6 !important;
+    }
+    
+    .table {
+        width: 100% !important;
+    }
+}

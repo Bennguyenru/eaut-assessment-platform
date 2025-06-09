@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EAUT Assessment Platform - Demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="styles.css">
+    <meta name="description" content="Nền tảng Đánh giá Chuẩn đầu ra Chương trình Đào tạo - Trường Đại học Công nghệ Đông Á">
+    <meta name="keywords" content="EAUT, assessment, education, learning outcomes, quality assurance">
+    <meta name="author" content="EAUT Development Team">
+</head>
+<body>
+    <!-- Demo Banner -->
+    <div class="alert alert-info alert-dismissible fade show m-0" role="alert">
+        <div class="container">
+            <div class="d-flex align-items-center">
+                <i class="bi bi-info-circle me-2"></i>
+                <div class="flex-grow-1">
+                    <strong>Demo Version</strong> - This is a static demonstration of the EAUT Assessment Platform. 
+                    For the full application with backend functionality, please visit our 
+                    <a href="https://github.com/eaut-dev/assessment-platform" class="alert-link">GitHub repository</a>.
+                </div>
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="#">
+                <i class="bi bi-mortarboard me-2"></i>
+                EAUT Assessment Platform
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#introduction">Giới thiệu</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#features">Tính năng</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#demo">Demo</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#deployment">Triển khai</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="https://github.com/eaut-dev/assessment-platform" class="btn btn-outline-light ms-2">
+                            <i class="bi bi-github me-1"></i> GitHub
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="bg-gradient-primary text-white py-5">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-8">
+                    <h1 class="display-4 fw-bold mb-3">
+                        Nền tảng Đánh giá Chuẩn đầu ra
+                    </h1>
+                    <p class="lead mb-4">
+                        Hệ thống quản lý và đánh giá chuẩn đầu ra chương trình đào tạo toàn diện 
+                        cho Trường Đại học Công nghệ Đông Á (EAUT)
+                    </p>
+                    <div class="d-flex flex-wrap gap-3">
+                        <a href="#demo" class="btn btn-light btn-lg">
+                            <i class="bi bi-play-circle me-2"></i>Xem Demo
+                        </a>
+                        <a href="https://github.com/eaut-dev/assessment-platform" class="btn btn-outline-light btn-lg">
+                            <i class="bi bi-download me-2"></i>Tải về
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="text-center">
+                        <img src="https://via.placeholder.com/400x300/ffffff/0d6efd?text=EAUT+Platform" 
+                             alt="EAUT Platform Screenshot" class="img-fluid rounded shadow">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Introduction Section -->
+    <section id="introduction" class="py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h2 class="text-center mb-5">Giới thiệu về EAUT</h2>
+                    
+                    <!-- University Information -->
+                    <div class="row mb-5">
+                        <div class="col-md-6">
+                            <div class="card h-100 border-0 shadow-sm">
+                                <div class="card-body">
+                                    <div class="d-flex align-items-center mb-3">
+                                        <div class="bg-primary text-white rounded-circle p-3 me-3">
+                                            <i class="bi bi-building fs-4"></i>
+                                        </div>
+                                        <h4 class="card-title mb-0">Trường Đại học Công nghệ Đông Á</h4>
+                                    </div>
+                                    <p class="card-text">
+                                        <strong>East Asia University of Technology (EAUT)</strong><br>
+                                        Một trong những trường đại học hàng đầu về đào tạo công nghệ và kỹ thuật tại Việt Nam.
+                                    </p>
+                                    <p class="card-text">
+                                        <strong>Phương châm:</strong> "Thực học, Thực danh, Thực hành, Thực nghiệp"
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card h-100 border-0 shadow-sm">
+                                <div class="card-body">
+                                    <div class="d-flex align-items-center mb-3">
+                                        <div class="bg-success text-white rounded-circle p-3 me-3">
+                                            <i class="bi bi-geo-alt fs-4"></i>
+                                        </div>
+                                        <h4 class="card-title mb-0">Địa chỉ liên hệ</h4>
+                                    </div>
+                                    <div class="mb-3">
+                                        <strong>Campus Hà Nội:</strong><br>
+                                        📍 Số 33, Đường Cầu Giấy, Quận Cầu Giấy, Hà Nội<br>
+                                        📞 024.1234.5678<br>
+                                        ✉️ info@eaut.edu.vn
+                                    </div>
+                                    <div>
+                                        <strong>Campus Bắc Ninh:</strong><br>
+                                        📍 Khu công nghệ cao, Tp. Bắc Ninh<br>
+                                        📞 0222.987.6543<br>
+                                        ✉️ bacninh@eaut.edu.vn
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Academic Programs -->
+                    <div class="row mb-5">
+                        <div class="col-12">
+                            <h3 class="text-center mb-4">Chương trình Đào tạo</h3>
+                            <div class="row">
+                                <div class="col-md-4 mb-4">
+                                    <div class="card border-0 shadow-sm">
+                                        <div class="card-body text-center">
+                                            <div class="bg-info text-white rounded-circle p-3 mx-auto mb-3" style="width: 60px; height: 60px;">
+                                                <i class="bi bi-gear-fill fs-4"></i>
+                                            </div>
+                                            <h5 class="card-title">Khối Kỹ thuật</h5>
+                                            <p class="card-text small">
+                                                Cơ khí, Điện - Điện tử, Công nghệ thông tin, 
+                                                Xây dựng, Môi trường, Hóa học
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 mb-4">
+                                    <div class="card border-0 shadow-sm">
+                                        <div class="card-body text-center">
+                                            <div class="bg-warning text-white rounded-circle p-3 mx-auto mb-3" style="width: 60px; height: 60px;">
+                                                <i class="bi bi-briefcase-fill fs-4"></i>
+                                            </div>
+                                            <h5 class="card-title">Khối Kinh tế</h5>
+                                            <p class="card-text small">
+                                                Quản trị kinh doanh, Kế toán, Tài chính - Ngân hàng, 
+                                                Marketing, Logistics
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 mb-4">
+                                    <div class="card border-0 shadow-sm">
+                                        <div class="card-body text-center">
+                                            <div class="bg-danger text-white rounded-circle p-3 mx-auto mb-3" style="width: 60px; height: 60px;">
+                                                <i class="bi bi-heart-fill fs-4"></i>
+                                            </div>
+                                            <h5 class="card-title">Ngôn ngữ & Y tế</h5>
+                                            <p class="card-text small">
+                                                Tiếng Anh, Tiếng Nhật, Tiếng Hàn, 
+                                                Y khoa, Dược học, Điều dưỡng
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-5 bg-light">
+        <div class="container">
+            <h2 class="text-center mb-5">Tính năng Chính</h2>
+            <div class="row">
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="card h-100 border-0 shadow-sm">
+                        <div class="card-body text-center">
+                            <div class="bg-primary text-white rounded-circle p-3 mx-auto mb-3" style="width: 60px;">
+                                <i class="bi bi-diagram-3 fs-4"></i>
+                            </div>
+                            <h5 class="card-title">Quản lý Chương trình</h5>
+                            <p class="card-text">Tạo và quản lý các chương trình đào tạo với đầy đủ thông tin PLO</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="card h-100 border-0 shadow-sm">
+                        <div class="card-body text-center">
+                            <div class="bg-success text-white rounded-circle p-3 mx-auto mb-3" style="width: 60px;">
+                                <i class="bi bi-journal-text fs-4"></i>
+                            </div>
+                            <h5 class="card-title">Ma trận CLO-PLO</h5>
+                            <p class="card-text">Thiết lập mối quan hệ giữa chuẩn đầu ra học phần và chương trình</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="card h-100 border-0 shadow-sm">
+                        <div class="card-body text-center">
+                            <div class="bg-info text-white rounded-circle p-3 mx-auto mb-3" style="width: 60px;">
+                                <i class="bi bi-bar-chart fs-4"></i>
+                            </div>
+                            <h5 class="card-title">Báo cáo & Thống kê</h5>
+                            <p class="card-text">Tạo báo cáo chi tiết với biểu đồ trực quan về tỷ lệ đạt chuẩn</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="card h-100 border-0 shadow-sm">
+                        <div class="card-body text-center">
+                            <div class="bg-warning text-white rounded-circle p-3 mx-auto mb-3" style="width: 60px;">
+                                <i class="bi bi-people fs-4"></i>
+                            </div>
+                            <h5 class="card-title">Quản lý Người dùng</h5>
+                            <p class="card-text">Hệ thống phân quyền theo vai trò với bảo mật cao</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="card h-100 border-0 shadow-sm">
+                        <div class="card-body text-center">
+                            <div class="bg-danger text-white rounded-circle p-3 mx-auto mb-3" style="width: 60px;">
+                                <i class="bi bi-speedometer2 fs-4"></i>
+                            </div>
+                            <h5 class="card-title">Dashboard</h5>
+                            <p class="card-text">Giao diện tổng quan với thống kê và biểu đồ thời gian thực</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="card h-100 border-0 shadow-sm">
+                        <div class="card-body text-center">
+                            <div class="bg-secondary text-white rounded-circle p-3 mx-auto mb-3" style="width: 60px;">
+                                <i class="bi bi-cloud fs-4"></i>
+                            </div>
+                            <h5 class="card-title">Triển khai Đám mây</h5>
+                            <p class="card-text">Hỗ trợ triển khai trên nhiều nền tảng cloud khác nhau</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Demo Section -->
+    <section id="demo" class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-5">Demo Giao diện</h2>
+            <div class="row">
+                <div class="col-lg-8 mx-auto">
+                    <div class="card border-0 shadow-lg">
+                        <div class="card-body p-0">
+                            <div class="bg-secondary p-2 rounded-top">
+                                <div class="d-flex align-items-center">
+                                    <div class="d-flex">
+                                        <div class="bg-danger rounded-circle me-1" style="width: 12px; height: 12px;"></div>
+                                        <div class="bg-warning rounded-circle me-1" style="width: 12px; height: 12px;"></div>
+                                        <div class="bg-success rounded-circle" style="width: 12px; height: 12px;"></div>
+                                    </div>
+                                    <div class="flex-grow-1 text-center">
+                                        <small class="text-white">eaut-assessment.edu.vn</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="demo-content p-4">
+                                <div class="alert alert-info">
+                                    <h5><i class="bi bi-info-circle me-2"></i>Tài khoản Demo</h5>
+                                    <p class="mb-2"><strong>Username:</strong> demo_user</p>
+                                    <p class="mb-0"><strong>Password:</strong> demo123</p>
+                                </div>
+                                <div class="text-center">
+                                    <img src="https://via.placeholder.com/600x400/f8f9fa/6c757d?text=Dashboard+Screenshot" 
+                                         alt="Dashboard Demo" class="img-fluid rounded">
+                                </div>
+                                <div class="row mt-4">
+                                    <div class="col-md-6">
+                                        <h6><i class="bi bi-check-circle text-success me-2"></i>Chức năng có sẵn:</h6>
+                                        <ul class="list-unstyled">
+                                            <li>✅ Xem giao diện chính</li>
+                                            <li>✅ Duyệt các trang</li>
+                                            <li>✅ Xem biểu đồ demo</li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <h6><i class="bi bi-exclamation-triangle text-warning me-2"></i>Giới hạn demo:</h6>
+                                        <ul class="list-unstyled">
+                                            <li>⚠️ Không có backend</li>
+                                            <li>⚠️ Dữ liệu mẫu</li>
+                                            <li>⚠️ Chỉ đọc</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Deployment Section -->
+    <section id="deployment" class="py-5 bg-light">
+        <div class="container">
+            <h2 class="text-center mb-5">Tùy chọn Triển khai</h2>
+            <div class="row">
+                <div class="col-md-6 col-lg-3 mb-4">
+                    <div class="card h-100 border-0 shadow-sm">
+                        <div class="card-body text-center">
+                            <i class="bi bi-github text-dark fs-1 mb-3"></i>
+                            <h5 class="card-title">GitHub Pages</h5>
+                            <p class="card-text">Demo tĩnh miễn phí</p>
+                            <a href="https://github.com/eaut-dev/assessment-platform" class="btn btn-outline-dark">
+                                Xem mã nguồn
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3 mb-4">
+                    <div class="card h-100 border-0 shadow-sm">
+                        <div class="card-body text-center">
+                            <i class="bi bi-cloud text-primary fs-1 mb-3"></i>
+                            <h5 class="card-title">Railway</h5>
+                            <p class="card-text">Full-stack deployment</p>
+                            <a href="#" class="btn btn-outline-primary">
+                                Deploy ngay
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3 mb-4">
+                    <div class="card h-100 border-0 shadow-sm">
+                        <div class="card-body text-center">
+                            <i class="bi bi-docker text-info fs-1 mb-3"></i>
+                            <h5 class="card-title">Docker</h5>
+                            <p class="card-text">Container deployment</p>
+                            <button class="btn btn-outline-info" onclick="showDockerCommands()">
+                                Xem lệnh
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3 mb-4">
+                    <div class="card h-100 border-0 shadow-sm">
+                        <div class="card-body text-center">
+                            <i class="bi bi-server text-success fs-1 mb-3"></i>
+                            <h5 class="card-title">VPS</h5>
+                            <p class="card-text">Self-hosted solution</p>
+                            <a href="#" class="btn btn-outline-success">
+                                Hướng dẫn
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Docker Commands Modal -->
+            <div class="modal fade" id="dockerModal" tabindex="-1">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Docker Deployment Commands</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                        </div>
+                        <div class="modal-body">
+                            <pre class="bg-dark text-light p-3 rounded"><code># Clone repository
+git clone https://github.com/eaut-dev/assessment-platform.git
+cd assessment-platform
+
+# Build and run with Docker Compose
+docker-compose up -d
+
+# Or build manually
+docker build -t eaut-assessment .
+docker run -p 3000:3000 eaut-assessment</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <h5 class="fw-bold mb-3">
+                        <i class="bi bi-mortarboard me-2"></i>
+                        EAUT Assessment Platform
+                    </h5>
+                    <p class="text-light">
+                        Nền tảng đánh giá chuẩn đầu ra chương trình đào tạo cho 
+                        Trường Đại học Công nghệ Đông Á.
+                    </p>
+                    <div class="d-flex gap-3">
+                        <a href="#" class="text-light fs-5"><i class="bi bi-facebook"></i></a>
+                        <a href="#" class="text-light fs-5"><i class="bi bi-youtube"></i></a>
+                        <a href="#" class="text-light fs-5"><i class="bi bi-instagram"></i></a>
+                        <a href="#" class="text-light fs-5"><i class="bi bi-tiktok"></i></a>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h6 class="fw-bold mb-3">Liên kết nhanh</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="#introduction" class="text-light text-decoration-none">Giới thiệu</a></li>
+                        <li><a href="#features" class="text-light text-decoration-none">Tính năng</a></li>
+                        <li><a href="#demo" class="text-light text-decoration-none">Demo</a></li>
+                        <li><a href="https://github.com/eaut-dev/assessment-platform" class="text-light text-decoration-none">GitHub</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h6 class="fw-bold mb-3">Liên hệ</h6>
+                    <p class="text-light mb-2">
+                        <i class="bi bi-geo-alt me-2"></i>
+                        Số 33, Đường Cầu Giấy, Hà Nội
+                    </p>
+                    <p class="text-light mb-2">
+                        <i class="bi bi-telephone me-2"></i>
+                        024.1234.5678
+                    </p>
+                    <p class="text-light mb-2">
+                        <i class="bi bi-envelope me-2"></i>
+                        info@eaut.edu.vn
+                    </p>
+                </div>
+            </div>
+            <hr class="my-4">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <p class="text-light mb-0">
+                        © 2025 East Asia University of Technology. All rights reserved.
+                    </p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <p class="text-light mb-0">
+                        Phiên bản 1.0.0 | 
+                        <a href="https://github.com/eaut-dev/assessment-platform" class="text-light">
+                            Mã nguồn mở
+                        </a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        function showDockerCommands() {
+            new bootstrap.Modal(document.getElementById('dockerModal')).show();
+        }
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Demo alert for static version
+        console.log('🎓 EAUT Assessment Platform - Static Demo Version');
+        console.log('📁 Full source code: https://github.com/eaut-dev/assessment-platform');
+        console.log('🚀 For deployment instructions, check the README.md');
+    </script>
+</body>
+</html>
